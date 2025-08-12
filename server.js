@@ -1,11 +1,15 @@
 // 1. 필요한 모듈 가져오기
 const express = require('express');
-const path = require('path');
+const path =require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const https = require('https');
-const multer = require('multer');
+
+// [수정] multer는 한 번만 불러옵니다.
+const multer = require('multer'); 
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
 
 // 2. Express 앱 생성 및 설정
 const app = express();
@@ -14,15 +18,26 @@ const port = 443;
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ limit: '500mb', extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// [삭제] 로컬 uploads 폴더를 static으로 제공할 필요가 이제 없습니다.
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Multer 설정
-const uploadDir = 'uploads/';
-if (!fs.existsSync(uploadDir)){ fs.mkdirSync(uploadDir); }
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => { cb(null, uploadDir); },
-    filename: (req, file, cb) => { cb(null, Date.now() + '-' + file.originalname); }
+// [추가] Cloudinary 정보 설정
+cloudinary.config({
+  cloud_name: 'ddn37gcqp', // 님의 Cloudinary Cloud Name
+  api_key: '146849265516792',       // 님의 Cloudinary API Key
+  api_secret: 'obPJnMYmr6xnMuJwtHnDcgqSMUo'  // 님의 Cloudinary API Secret
 });
+
+// [수정] Multer 설정을 Cloudinary 스토리지로 교체합니다.
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'bebcon-uploads',
+    format: 'png',
+    public_id: (req, file) => file.originalname.split('.')[0] + '-' + Date.now(),
+  },
+});
+
 const upload = multer({ storage: storage });
 
 // 3. 페이지 라우팅
@@ -246,6 +261,7 @@ app.delete('/api/posts/:id', (req, res) => {
 
     readJsonFile(postsFilePath, (err, posts) => {
         if (err) return res.status(500).json({ message: '오류' });
+        
         const postIndex = posts.findIndex(p => p.id === postId);
         if (postIndex === -1) return res.status(404).json({ message: '삭제할 게시물을 찾지 못했습니다.' });
         
@@ -254,9 +270,19 @@ app.delete('/api/posts/:id', (req, res) => {
             return res.status(403).json({ message: '삭제 권한이 없습니다.' });
         }
         
+        // [수정] 로컬 파일 삭제(fs.unlink) 대신 Cloudinary에서 이미지 삭제하는 로직으로 변경
         if (postToDelete.image) {
-            fs.unlink(path.join(__dirname, postToDelete.image), (unlinkErr) => {
-                if (unlinkErr) console.error("이미지 파일 삭제 오류:", unlinkErr);
+            // 1. 이미지 URL에서 public_id를 추출합니다.
+            // 예: ".../bebcon-uploads/filename-12345.png" -> "bebcon-uploads/filename-12345"
+            const publicId = postToDelete.image.split('/').slice(-2).join('/').split('.')[0];
+            
+            // 2. Cloudinary에 삭제 요청을 보냅니다.
+            cloudinary.uploader.destroy(publicId, (error, result) => {
+                if (error) {
+                    console.error("Cloudinary 이미지 삭제 오류:", error);
+                } else {
+                    console.log("Cloudinary 이미지 삭제 성공:", result);
+                }
             });
         }
         
