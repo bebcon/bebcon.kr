@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1749567947713,
+    "realName": "관리자",
+    "dob": "1978-06-30",
+    "email": "njarekr1@naver.com",
+    "username": "admin",
+    "password": "$2b$10$TuWLEjfdwcFEb3n1US7W5.88cEdZ7ys7MMUGbIvHz7B7iLu9yZt36",
+    "role": "admin"
+  },
+  {
+    "id": 1749569955687,
+    "realName": "허민재",
+    "dob": "2011-11-12",
+    "email": "njarekr1@gmail.com",
+    "username": "mnza_eu",
+    "password": "$2b$10$36wgDYP78O9GP4RuADfMaOjrKGHOns.scwR.mus2mylhQHBQvMu/.",
+    "role": "user"
+  },
+  {
+    "id": 1751546291832,
+    "realName": "운동화책",
+    "dob": "2008-06-18",
+    "email": "drew1618@naver.com",
+    "username": "sneakers",
+    "password": "$2b$10$CB4s2IXdTBV3qk/zYdjmwetY2OwzidFKVFXqrIGbfQ5gKmZV0n.1S",
+    "role": "user"
+  },
+  {
+    "id": 1751546734701,
+    "realName": "신동화",
+    "dob": "2008-06-18",
+    "email": "fairytalebook1618@gmail.com",
+    "username": "fairytale",
+    "password": "$2b$10$Z6eoUXPXRay7UovUhBY7r.5ZEmRDIgvnvNRi62/IJ0wW6sPDxDmqy",
+    "role": "user"
+  },
+  {
+    "id": 1751547164518,
+    "realName": "지식볶음밥",
+    "dob": "2008-06-18",
+    "email": "rocca7276@gmail.com",
+    "username": "book",
+    "password": "$2b$10$9ERsydz6Vd1YnbRNw/UaWuUJbmaLMW5cjtlmICRubj3Aydjx2TBbO",
+    "role": "user"
+  },
+  {
+    "id": 1751612271395,
+    "realName": "이의민",
+    "dob": "2011-10-18",
+    "email": "euimin0987@gmail.com",
+    "username": "lem",
+    "password": "$2b$10$F9gm1TJAC.01fxKKnmjwpuxWbLVBPUxzY2G1VO6Pquckv3GIK1MqS",
+    "role": "user"
+  },
+  {
+    "id": 1752893356895,
+    "realName": "벱콘",
+    "dob": "2025-06-30",
+    "email": "hebebcon@naver.com",
+    "username": "bebcon",
+    "password": "$2b$10$wywFqTzhUk8ohyonV8NTl.AD.rhVAKPfpmmqBFHIqKa0LC9zxJ4P2",
+    "role": "user"
+  }
+]
