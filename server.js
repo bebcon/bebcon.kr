@@ -21,11 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // [삭제] 로컬 uploads 폴더를 static으로 제공할 필요가 이제 없습니다.
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// [추가] Cloudinary 정보 설정
-cloudinary.config({
-  cloud_name: 'ddn37gcqp', // 님의 Cloudinary Cloud Name
-  api_key: '146849265516792',       // 님의 Cloudinary API Key
-  api_secret: 'obPJnMYmr6xnMuJwtHnDcgqSMUo'  // 님의 Cloudinary API Secret
+cloudinary.config ({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // 별명으로 변경
+  api_key: process.env.CLOUDINARY_API_KEY,       // 별명으로 변경
+  api_secret: process.env.CLOUDINARY_API_SECRET  // 별명으로 변경
 });
 
 // [수정] Multer 설정을 Cloudinary 스토리지로 교체합니다.
