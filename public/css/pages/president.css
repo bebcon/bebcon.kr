@@ -1,0 +1,114 @@
+/* =================================== */
+/* President Page                      */
+/* =================================== */
+
+.president-profile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: var(--border-radius-base);
+    border: 3px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.president-profile-image-wrapper {
+    flex-shrink: 0;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.president-profile-image {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #f0f2f5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.president-profile-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.president-profile-info .role {
+    font-size: 1.1rem;
+    color: var(--text-color-light);
+    margin-bottom: -6px;
+}
+
+.president-profile-info .name {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin: 5px 0 10px 0;
+}
+
+.president-profile-info .slogan {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: -10px;
+}
+
+.president-profile-info .bio {
+    margin-top: -1rem;
+    font-size: 1.05rem;
+    color: var(--text-color-light);
+    line-height: 1.7;
+}
+
+.president-message .section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.president-message .complaint-answer {
+    margin-top: 20px;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius-base);
+    border: 1px solid #e9ecef;
+}
+
+.president-message .complaint-answer p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.president-message .president-sign {
+    max-width: 5%;
+    margin-top: 19px;
+}
+
+@media (max-width: 768px) {
+    .president-profile {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .president-profile-image {
+        width: 160px;
+        height: 160px;
+        margin-top: 20px;
+    }
+
+    .president-profile-info .name {
+        font-size: 2rem;
+        margin-top: -10px;
+    }
+
+    .president-profile-info .slogan {
+        font-size: 1.2rem;
+        margin-top: -7px;
+    }
+
+    .president-message .president-sign {
+        max-width: 17%;
+        margin-top: 19px;
+    }
+}

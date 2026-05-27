@@ -1,0 +1,292 @@
+/* =================================== */
+/* Image Hosting Page                  */
+/* =================================== */
+
+#image-hosting-page h3 {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- 업로드 컨테이너 --- */
+.upload-container {
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+}
+
+.upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius-base);
+    padding: 3rem;
+    text-align: center;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+.upload-area.drag-over {
+    border-color: var(--primary-color);
+    background-color: #e9f0f8;
+}
+
+.upload-label { cursor: pointer; }
+
+.upload-instructions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-color-light);
+}
+.upload-instructions i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+.upload-instructions strong {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    margin: -1px; padding: 0; overflow: hidden;
+    clip: rect(0, 0, 0, 0); border: 0;
+}
+
+/* 미리보기 & 업로드 컨트롤 */
+.preview-area {
+    position: relative;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.preview-area img, .preview-area video { width: 100%; display: block; }
+
+.cancel-preview-btn {
+    position: absolute; top: 8px; right: 8px; width: 28px;
+    height: 28px; border-radius: 50%; border: none;
+    background-color: rgba(0,0,0,0.6); color: white; font-size: 1.2rem;
+    line-height: 28px; text-align: center; cursor: pointer;
+    transition: background-color 0.2s;
+}
+.cancel-preview-btn:hover { background-color: var(--danger-color); }
+
+.upload-controls {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
+}
+
+.login-prompt { text-align: center; }
+
+/* --- 갤러리 --- */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+.image-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* 자식 요소가 카드를 넘지 않도록 설정 */
+}
+.image-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.card-image-wrapper { 
+    aspect-ratio: 16 / 10; 
+    overflow: hidden; 
+    border-top-left-radius: var(--border-radius-base); 
+    border-top-right-radius: var(--border-radius-base); 
+    background-color: #f0f0f0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-image-wrapper img,
+.card-image-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.play-icon {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+.image-card:hover .play-icon {
+    transform: scale(1.1);
+}
+
+.card-info { padding: 1rem 1.25rem; flex-grow: 1; }
+.card-title { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-meta { font-size: 0.875rem; color: var(--text-color-light); margin: 0; display: flex; flex-wrap: wrap; gap: 0 10px; }
+
+.card-actions { 
+    padding: 1rem 1.25rem; 
+    display: flex; 
+    gap: 0.75rem; 
+    border-top: 1px solid var(--border-color); 
+    margin-top: auto;
+}
+
+.card-actions .copy-url-btn,
+.card-actions .delete-btn {
+    flex: 1;
+    min-height: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: auto;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    /* [수정] Pretendard GOV 폰트 스택 적용 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.card-actions .copy-url-btn {
+    background-color: #6c757d;
+    color: white;
+}
+.card-actions .copy-url-btn:hover {
+    background-color: #5a6268;
+}
+.card-actions .delete-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+.card-actions .delete-btn:hover {
+    opacity: 0.8;
+}
+
+#media-filter-bar {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    padding: 15px;
+    margin-bottom: 25px;
+    
+}
+.media-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* 너비가 부족하면 줄바꿈 */
+}
+
+.media-search-form .filter-select,
+.media-search-form .filter-input {
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    /* [수정] Pretendard GOV 폰트 스택 적용 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    box-sizing: border-box;
+    flex-shrink: 0; /* 기본적으로 줄어들지 않도록 */
+}
+
+.media-search-form .filter-select { width: 150px; }
+.media-search-form #media-width-filter,
+.media-search-form #media-height-filter {
+     width: 120px;
+}
+
+.media-search-form .autocomplete-container {
+    flex-grow: 1; /* 남은 공간을 모두 차지 */
+    min-width: 0; /* 중요: flex item이 내용물보다 작아질 수 있도록 허용하여 잘림 현상 방지 */
+    position: relative;
+    display: flex; /* 자식 요소(input)의 너비를 100%로 채우기 위함 */
+}
+.media-search-form .search-main {
+    width: 100%;
+    min-width: 180px; /* 검색창이 너무 작아지지 않도록 최소 너비 설정 */
+}
+
+/* PC 뷰에서 검색 버튼을 입력창에 붙이기 */
+#media-filter-bar button {
+    margin-left: -10px;
+    height: 40px; /* 입력창과 높이 통일 */
+}
+
+
+/* 모달 */
+#media-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+#media-modal .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#modal-image, #modal-video {
+    max-width: 85vw;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: var(--border-radius-base);
+}
+#modal-caption {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .upload-container { padding: 1.5rem; }
+    .upload-area { padding: 2rem 1.5rem; }
+    .image-gallery { gap: 1rem; grid-template-columns: 1fr; }
+
+    #media-filter-bar {
+        padding: 15px;
+    }
+    .media-search-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    .media-search-form .filter-select,
+    .media-search-form #media-width-filter,
+    .media-search-form #media-height-filter {
+        width: 100%; /* 모바일에서는 너비를 100%로 설정 */
+    }
+
+    /* 모바일에서 검색창과 버튼 분리 및 스타일 조정 */
+    #media-filter-bar .autocomplete-container input.search-main {
+        border-radius: 4px;
+        border-right: 1px solid #ccc;
+    }
+
+    #media-filter-bar form button {
+        width: 100%;
+        border-radius: 4px;
+        height: 40px;
+        margin-left: 0; /* 네거티브 마진 리셋 */
+    }
+}

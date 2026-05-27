@@ -1,0 +1,50 @@
+/* =================================== */
+/* Pagination                          */
+/* =================================== */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 4px; /* 버튼 간격 살짝 통일 */
+}
+
+.page-link {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px 14px;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 15px;
+
+    /* ✅ 페이드(transition) 제거 */
+    transition: none;
+}
+
+.page-link:hover:not(:disabled) {
+    background-color: var(--bg-color);
+    border-color: #bbb;
+}
+
+.page-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    cursor: default;
+}
+
+.page-link:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .page-link {
+        padding: 8px 10px;
+    }
+}

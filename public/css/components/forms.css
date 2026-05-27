@@ -1,0 +1,184 @@
+/* =================================== */
+/* Forms                               */
+/* =================================== */
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    resize: none;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    /* [수정] Pretendard GOV 폰트 스택 적용 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--sub-color);
+    box-shadow: 0 0 0 2px rgba(26, 68, 122, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+/* ▼▼▼ [수정] 여러 페이지의 필터 바에 공통으로 적용될 스타일 (ID 선택자 제거 및 통합) ▼▼▼ */
+.filter-bar {
+    position: relative; /* 자식 요소의 absolute 포지셔닝 기준이 되도록 설정 */
+    /* [수정] Pretendard GOV 폰트 스택 적용 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+}
+
+/* 여러 페이지에서 ID로 사용되던 스타일을 클래스로 통합 */
+#news-filter-bar,
+#realty-filter-bar,
+#media-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    align-items: center; /* 요소들 수직 중앙 정렬 */
+}
+
+#news-filter-bar form,
+#realty-filter-bar form,
+#media-filter-bar form,
+#community-search-form {
+    display: flex;
+    flex-grow: 1; /* form이 남은 공간을 모두 차지하도록 */
+}
+
+/* [수정] 오른쪽 테두리가 잘리는 문제를 해결하기 위해 .autocomplete-container 내부의 input만 특정하여 스타일 적용 */
+#news-filter-bar .autocomplete-container input,
+#realty-filter-bar .autocomplete-container input,
+#media-filter-bar .autocomplete-container input,
+#community-search-form .autocomplete-container input,
+#stock-search-form input {
+    width: 100%; /* 부모 요소 너비에 맞춤 */
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    font-size: 15px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+#news-filter-bar button,
+#realty-filter-bar button,
+#media-filter-bar button,
+#community-search-form button,
+#stock-search-form button {
+    padding: 8px 20px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    transition: background-color 0.2s;
+    flex-shrink: 0; /* 버튼 너비가 줄어들지 않도록 */
+}
+
+#news-filter-bar button:hover,
+#realty-filter-bar button:hover,
+#media-filter-bar button:hover,
+#community-search-form button:hover,
+#stock-search-form button:hover {
+    background-color: var(--sub-color);
+}
+/* ▲▲▲ [수정] 스타일 통합 완료 ▲▲▲ */
+
+
+.sub-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* --- 자동 완성 --- */
+.autocomplete-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #ddd;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 0 0 var(--border-radius-base) var(--border-radius-base);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.autocomplete-items div {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+    text-align: left;
+}
+
+.autocomplete-items div:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-items div:hover {
+    background-color: #f5f5ff;
+}
+
+.autocomplete-active {
+    background-color: var(--primary-color) !important;
+    color: #ffffff;
+}
+
+.autocomplete-items strong {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* --- 모바일 반응형 --- */
+@media (max-width: 768px) {
+    #news-filter-bar select {
+        width: 100%;
+        height: 40px; /* 검색창과 높이를 맞춥니다. */
+    }
+}

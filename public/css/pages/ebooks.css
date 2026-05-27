@@ -1,0 +1,724 @@
+/* ==================================================
+   Ebooks (list / reader / write) - unified design
+   참고: news.css / main-page.css 톤(카드, 보더, hover)과 통일
+   ================================================== */
+
+/* 공통 토큰(없을 때 대비 fallback) */
+:root{
+  --ebooks-radius: var(--border-radius-base, 8px);
+  --ebooks-border: var(--border-color, #e0e0e0);
+  --ebooks-primary: var(--primary-color, #1A447A);
+  --ebooks-sub: var(--sub-color, #112E51);
+  --ebooks-text: var(--text-color, #222);
+  --ebooks-text-light: var(--text-color-light, #666);
+}
+
+/* ==================================================
+   ebook-list.html
+   ================================================== */
+
+/* 검색 바 */
+.search-container{
+  margin: 18px 0 28px;
+}
+.search-box{
+  display:flex;
+  align-items:center;
+  max-width: 720px;
+  margin: 0 auto;
+  border: 2px solid var(--ebooks-primary);
+  border-radius: 50px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: box-shadow .3s ease, transform .2s ease;
+}
+.search-box:focus-within{
+  box-shadow: 0 6px 20px rgba(26,68,122,0.20);
+  transform: translateY(-2px);
+}
+#ebook-search-input{
+  flex:1;
+  border:none;
+  outline:none;
+  padding: 14px 22px;
+  font-size: 1.05rem;
+  color: var(--ebooks-text);
+  background: transparent;
+}
+#ebook-search-input::placeholder{ color:#aaa; }
+#ebook-search-btn{
+  border:none;
+  background: var(--ebooks-primary);
+  color:#fff;
+  padding: 0 22px;
+  cursor:pointer;
+  transition: background-color .2s ease;
+}
+#ebook-search-btn:hover{ background: var(--ebooks-sub); }
+
+/* 레이아웃 */
+.ebook-container{
+  display:flex;
+  gap: 26px;
+  margin-top: 26px;
+  min-height: 680px;
+}
+.ebook-list-section{ flex:1; }
+
+.ebook-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+/* 카드 */
+.ebook-card{
+  background:#fff;
+  border: 1px solid var(--ebooks-border);
+  border-radius: 12px;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: all .2s ease-in-out;
+}
+.ebook-card:hover{
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateY(-3px);
+  border-color: var(--ebooks-primary);
+}
+.ebook-card .cover-img{
+  width:100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  transition: transform .3s ease;
+}
+.ebook-card:hover .cover-img{ transform: scale(1.05); }
+
+.ebook-card .info{ padding: 14px 14px 15px; }
+.ebook-card .title{
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  color: var(--ebooks-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ebook-card .author{
+  font-size: 0.9rem;
+  color: var(--ebooks-text-light);
+}
+
+/* ✅ 상세 보기 애니메이션(복원) */
+@keyframes fadeInRight{
+  from{ opacity:0; transform: translateX(14px); }
+  to{ opacity:1; transform: translateX(0); }
+}
+@keyframes slideUp{
+  from{ opacity:0; transform: translateY(14px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+
+/* 정보 패널 */
+.info-panel{
+  width: 360px;
+  background:#fff;
+  border: 1px solid var(--ebooks-border);
+  border-radius: var(--ebooks-radius);
+  padding: 22px;
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+  display:none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+.info-panel.active{
+  display:block;
+  animation: fadeInRight .22s ease both; /* ✅ 다시 넣음 */
+}
+
+.panel-close-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid var(--ebooks-border);
+  background: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.panel-close-btn:active{ transform: scale(0.98); }
+
+.panel-cover{
+  width:100%;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+}
+.panel-title{
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 2px 0 12px;
+  color: var(--ebooks-text);
+}
+.panel-meta{
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 14px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+.panel-desc{
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 18px;
+  white-space: pre-wrap;
+}
+
+.panel-btns{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.panel-btns a,
+.panel-btns button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration:none;
+  cursor:pointer;
+  transition: all .2s ease;
+}
+.btn-read{
+  background: var(--ebooks-primary);
+  color:#fff;
+  border: 1px solid var(--ebooks-primary);
+}
+.btn-read:hover{
+  background: var(--ebooks-sub);
+  border-color: var(--ebooks-sub);
+}
+.btn-like{
+  background:#fff;
+  color: var(--ebooks-primary);
+  border: 1px solid var(--ebooks-border);
+}
+.btn-like:hover{
+  background:#f8f9fa;
+  border-color: var(--ebooks-primary);
+}
+
+.admin-btns{
+  margin-top: 16px;
+  display:flex;
+  gap: 8px;
+  border-top: 1px dotted #ddd;
+  padding-top: 16px;
+}
+.btn-edit, .btn-delete{
+  flex:1;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor:pointer;
+  border: 1px solid var(--ebooks-border);
+  background:#fff;
+  transition: all .2s ease;
+}
+.btn-edit:hover{
+  border-color: var(--ebooks-primary);
+  color: var(--ebooks-primary);
+  background:#f8fbff;
+}
+.btn-delete{
+  border-color: rgba(231,76,60,0.35);
+  color: #e74c3c;
+}
+.btn-delete:hover{
+  background: rgba(231,76,60,0.08);
+  border-color: rgba(231,76,60,0.6);
+}
+
+/* 중간 폭 */
+@media (max-width: 992px){
+  .ebook-container{ flex-direction: column; }
+  .info-panel{ width:100%; position: static; top:auto; }
+}
+
+/* ==================================================
+   ebook-reader.html
+   PC: 오른쪽 세로 툴바 / Mobile: 하단 툴바 + 접기/펼치기
+   ================================================== */
+
+.reader-wrapper{
+  max-width: 900px;
+  margin: 40px auto;
+  background:#fff;
+  padding: 40px;
+  border-radius: var(--ebooks-radius);
+  border: 1px solid var(--ebooks-border);
+  box-shadow: none;
+  min-height: 80vh;
+  position: relative;
+}
+
+/* 컨트롤 공통 */
+.reader-controls{
+  position: fixed;
+  z-index: 1000;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--ebooks-border);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  display: flex;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1),
+              opacity 0.25s ease;
+}
+
+/* 토글 버튼(모바일 전용) */
+.reader-controls .toggle-btn{ display:none; }
+
+/* --------------------------------------------------
+   PC(>=1025): 본문 박스 오른쪽 끝 기준으로 툴바를 정렬
+   -------------------------------------------------- */
+@media (min-width: 1025px){
+  .reader-wrapper{
+    margin: 40px auto;
+    max-width: 900px;
+  }
+
+  .reader-controls{
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(50% + (900px / 2) + 14px);
+    right: auto;
+
+    width: 96px;              /* ✅ 더 줄임 */
+    padding: 14px 10px;       /* ✅ 더 줄임 */
+    border-radius: 24px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .font-controls,
+  .action-controls{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .reader-controls .vote-button{
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /* 화면이 좁을 때 안전장치 */
+  @media (max-width: 1200px){
+    .reader-controls{
+      left: auto;
+      right: 14px;
+    }
+  }
+}
+
+/* 태블릿(769~1024): 슬림 툴바 */
+@media (min-width: 769px) and (max-width: 1024px){
+  .reader-controls{
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 78px;
+    padding: 14px 8px;
+    border-radius: 30px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .font-controls,
+  .action-controls{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .reader-controls .vote-button{
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+}
+
+/* 모바일(<=768): 하단 툴바 + 아이콘 토글 */
+@media (max-width: 768px){
+  .reader-controls{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+
+    border-radius: 20px 20px 0 0;
+    padding: 16px 12px 22px;
+    border-bottom: none;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 12px;
+    align-items: center;
+    justify-items: center;
+
+    transform: translateY(0);
+  }
+
+  .reader-controls.collapsed{
+    transform: translateY(calc(100% - 48px));
+  }
+
+  /* ✅ 토글 버튼: 아래 라운드 제거(윗부분만 둥글게) */
+  .reader-controls .toggle-btn{
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 56px;
+    height: 30px;
+
+    background: var(--ebooks-primary);
+    color: #fff;
+    border: none;
+    border-radius: 14px 14px 0 0; /* ✅ 아래 radius 제거 */
+
+    cursor: pointer;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.14);
+
+    font-size: 0;
+    line-height: 0;
+  }
+
+  .reader-controls .toggle-btn::before{
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1;
+    content: "\f078";
+  }
+  .reader-controls.collapsed .toggle-btn::before{
+    content: "\f077";
+  }
+
+  .reader-controls .font-controls,
+  .reader-controls .action-controls{
+    display: contents;
+  }
+
+  .reader-controls .vote-button{
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .reader-controls .vote-button i{
+    font-size: 18px;
+  }
+
+  .reader-wrapper{
+    padding: 22px;
+    margin: 18px auto;
+    padding-bottom: 134px;
+    min-height: auto;
+  }
+}
+
+/* ToastUI Viewer */
+.viewer-container{ transition: none; }
+
+#viewer .toastui-editor-contents{
+  font-family: "Pretendard GOV Variable","Pretendard GOV",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif !important;
+  line-height: 1.8 !important;
+  color: var(--ebooks-text) !important;
+}
+
+#viewer.size-1 .toastui-editor-contents{ font-size: 16px !important; }
+#viewer.size-2 .toastui-editor-contents{ font-size: 19px !important; }
+#viewer.size-3 .toastui-editor-contents{ font-size: 22px !important; }
+#viewer.size-4 .toastui-editor-contents{ font-size: 25px !important; }
+#viewer.size-5 .toastui-editor-contents{ font-size: 28px !important; }
+
+#viewer .toastui-editor-contents p,
+#viewer .toastui-editor-contents li,
+#viewer .toastui-editor-contents span,
+#viewer .toastui-editor-contents table,
+#viewer .toastui-editor-contents blockquote{
+  font-size: inherit !important;
+}
+
+.viewer-container .toastui-editor-contents img{
+  display:block;
+  margin: 10px auto 35px;
+  max-width: 75%;
+  object-fit: contain;
+}
+@media (max-width: 768px){
+  #viewer .toastui-editor-contents img{
+    max-width: 100% !important;
+    margin: 10px auto 22px;
+  }
+}
+
+.book-title{
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-align:center;
+}
+.book-author{
+  text-align:center;
+  color: var(--ebooks-text-light);
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--ebooks-primary);
+  padding-bottom: 20px;
+}
+@media (max-width: 768px){
+  .book-title{ font-size: 1.55rem; margin-top: 6px; }
+  .book-author{ margin-bottom: 22px; padding-bottom: 14px; }
+}
+
+/* ==================================================
+   ebook-write.html
+   ================================================== */
+
+.write-container{
+  max-width: 1000px;
+  margin: 40px auto;
+  background:#fff;
+  padding: 30px;
+  border-radius: var(--ebooks-radius);
+  border: 1px solid var(--ebooks-border);
+  box-shadow: none;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns: 250px 1fr;
+  gap: 26px;
+  margin-bottom: 26px;
+}
+
+.cover-upload-section{ text-align:center; }
+
+.cover-preview{
+  width:100%;
+  aspect-ratio: 3/4;
+  border: 2px dashed #cfd4da;
+  border-radius: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  margin-bottom: 10px;
+  background:#f8f9fa;
+  cursor:pointer;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+.cover-preview:hover{
+  border-color: var(--ebooks-primary);
+  background:#f1f3f5;
+  transform: translateY(-2px);
+}
+.cover-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.cover-preview i{
+  font-size: 3rem;
+  color:#b8bfc7;
+}
+
+#editor{ margin-bottom: 18px; }
+
+.tag-input-guide{
+  font-size: 0.85rem;
+  color:#888;
+  margin-top: 5px;
+}
+
+.submit-area{
+  display:flex;
+  justify-content:flex-end;
+  gap: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+/* ==================================================
+   Mobile Optimization (General)
+   ================================================== */
+
+@media (max-width: 768px){
+  .content-wrapper{
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* list */
+  .search-container{
+    margin: 14px 0 18px;
+  }
+  .search-box{
+    max-width: 100%;
+    border: 1px solid var(--ebooks-border);
+    border-radius: 8px;
+    box-shadow: none;
+    transform: none !important;
+    overflow: hidden;
+  }
+  #ebook-search-input{
+    padding: 10px 12px;
+    font-size: 15px;
+    height: 40px;
+    box-sizing: border-box;
+  }
+  #ebook-search-btn{
+    height: 40px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ebook-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .ebook-container{
+    flex-direction: column;
+    gap: 16px;
+    min-height: auto;
+  }
+
+  .info-panel{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: auto;
+    z-index: 9999;
+
+    border-radius: 16px 16px 0 0;
+    padding: 16px;
+    max-height: 75vh;
+    overflow: auto;
+
+    display: none;
+
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.18);
+  }
+  .info-panel.active{
+    display: block;
+    animation: slideUp .22s ease both; /* ✅ 모바일은 위로 올라오는 느낌 */
+  }
+
+  .ebook-overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 9998;
+    display: none;
+  }
+  .ebook-overlay.active{
+    display: block;
+  }
+
+  .panel-title{
+    font-size: 1.25rem;
+    margin: 6px 0 10px;
+  }
+  .panel-meta{
+    font-size: 0.9rem;
+    padding: 10px 0;
+    margin-bottom: 12px;
+  }
+  .panel-desc{
+    font-size: 0.92rem;
+    margin-bottom: 14px;
+  }
+  .panel-btns a,
+  .panel-btns button{
+    height: 44px;
+    font-size: 15px;
+  }
+  .admin-btns{ gap: 10px; }
+  .btn-edit, .btn-delete{ height: 42px; }
+
+  /* write */
+  .write-container{
+    margin: 18px auto;
+    padding: 18px;
+  }
+  .form-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .cover-preview{
+    width: 220px;
+    margin: 0 auto 10px;
+  }
+  #editor .toastui-editor-defaultUI{
+    min-height: 420px;
+  }
+  .submit-area{
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .submit-area .btn-primary,
+  .submit-area .btn-secondary{
+    width: 100%;
+    justify-content: center;
+  }
+}

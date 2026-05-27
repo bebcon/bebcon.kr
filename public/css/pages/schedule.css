@@ -1,0 +1,17 @@
+/* =================================== */
+/* Schedule Page (schedule.html)       */
+/* =================================== */
+
+/* FullCalendar 라이브러리는 자체 스타일을 가지고 있어
+   큰 커스터마이징이 필요하지 않습니다.
+   추후 캘린더의 특정 부분(이벤트 색상, 헤더 등)을
+   수정하고 싶을 때 이 파일에 스타일을 추가하면 됩니다. */
+
+   #schedule-page .form-container {
+    margin: 20px 0;
+    max-width: none;
+    background: #fff;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+}

@@ -1,0 +1,128 @@
+/* public/css/pages/todo.css */
+
+.todo-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+}
+
+.todo-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.todo-input-group input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.todo-input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item:hover {
+    background-color: #f9f9fa;
+}
+
+.todo-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.todo-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+    pointer-events: none;
+}
+
+.todo-text {
+    font-size: 1.05rem;
+    transition: color 0.2s;
+}
+
+.todo-date {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-left: auto;
+    padding-right: 15px;
+}
+
+/* 완료된 항목 스타일 */
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.delete-todo-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.delete-todo-btn:hover {
+    color: var(--danger-color);
+}
+
+.empty-message i {
+    font-size: 3rem;
+    color: #ddd;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 520px) {
+  .todo-input-group {
+    gap: 8px;
+  }
+
+  .todo-input-group input {
+    flex: 1 1 auto;
+    min-width: 0;            /* 이거 중요! input이 줄어들 수 있게 함 */
+  }
+
+  .todo-input-group button {
+    flex: 0 0 auto;
+    padding: 10px 12px;      /* 버튼 폭 줄이기 */
+    white-space: nowrap;
+  }
+}
+

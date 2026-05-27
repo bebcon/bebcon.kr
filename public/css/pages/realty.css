@@ -1,0 +1,424 @@
+/* =================================== */
+/* Realty Pages                        */
+/* =================================== */
+
+/* --- 부동산 목록 (realty.html) --- */
+#realty-filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 25px;
+    background-color: #fff;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+}
+
+#realty-category-select {
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    /* Pretendard GOV 폰트 스택 적용 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+#realty-search-form {
+    display: flex;
+    flex-grow: 1;
+}
+
+#realty-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.realty-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.realty-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.realty-card-thumbnail {
+    position: relative;
+    width: 100%;
+    padding-top: 60%; /* 5:3 비율 */
+    overflow: hidden;
+}
+
+.realty-card-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.realty-card-price-badge, .realty-card-category-badge {
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.realty-card-price-badge { background-color: rgba(26, 68, 122, 0.9); }
+.realty-card-category-badge { background-color: rgba(27, 134, 79, 0.9); }
+
+.realty-card-info { padding: 20px; flex-grow: 1; }
+.realty-card-title { margin: 0 0 5px; font-size: 1.2rem; font-weight: 700; }
+.realty-card-region { margin: 0 0 10px; font-size: 0.9rem; color: var(--text-color-light); }
+.realty-card-description { margin: 0 0 15px; font-size: 1rem; line-height: 1.6; }
+.realty-card-meta {
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+/* --- 부동산 상세 (realty-detail.html) --- */
+.realty-detail-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+.realty-detail-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.realty-detail-region-badge, .realty-detail-category-badge {
+    display: inline-block;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.realty-detail-region-badge { background-color: var(--accent-color); }
+.realty-detail-category-badge { background-color: var(--primary-color); }
+
+.realty-detail-container h1 { margin: 0; font-size: 2.5rem; }
+.realty-detail-address { margin-top: 10px; font-size: 1.1rem; color: var(--text-color-light); }
+
+
+/* [수정] 부동산 상세 슬라이드쇼 (16:9 비율 적용) */
+.realty-slideshow-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 1920x1080 비율 고정 */
+    background-color: #000;
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.realty-slide {
+    display: none; /* 기본적으로 숨김 */
+    width: 100%;
+    height: 100%;
+}
+
+.realty-slide.active {
+    display: flex; /* 활성화되면 보임 */
+    justify-content: center;
+    align-items: center;
+    animation: fadeEffect 0.5s;
+}
+
+.realty-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 비율 유지하며 전체 표시 */
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* 슬라이드 컨트롤 버튼 */
+.realty-slide-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10;
+    padding: 0 10px;
+    pointer-events: none; /* 버튼 외 영역 클릭 통과 */
+}
+
+.realty-control-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.2s;
+    pointer-events: auto; /* 버튼 클릭 허용 */
+}
+
+.realty-control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* 슬라이드 카운터 */
+.realty-slide-counter {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+
+.realty-detail-main-info {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius-base);
+    padding: 20px;
+    text-align: center;
+}
+
+.realty-detail-main-info .info-item small {
+    display: block;
+    color: var(--text-color-light);
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.realty-detail-main-info .info-item strong {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.realty-detail-main-info .info-item.price strong { color: var(--accent-color); }
+
+.realty-detail-content h3 { font-size: 1.4rem; margin-bottom: 15px; }
+.realty-detail-description { font-size: 1.1rem; line-height: 1.8; }
+
+.realtor-info {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.realtor-info p { margin: 0 0 10px; }
+
+
+/* --- 부동산 등록 (write-realty.html) --- */
+#realty-form-page .button-group { margin-top: 1.5rem; }
+
+
+/* --- [추가] 부동산 상세 슬라이드 전체화면(Lightbox) 스타일 --- */
+
+/* 전체 화면 래퍼 스타일 */
+.realty-slideshow-wrapper.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 전체 화면일 때 슬라이드 컨테이너 크기 및 비율 해제 */
+.realty-slideshow-wrapper.fullscreen .realty-slideshow-container {
+    width: 100%;
+    height: 80%; /* 썸네일 공간 확보 */
+    aspect-ratio: unset; /* 고정 비율 해제 */
+    background: transparent;
+    margin-bottom: 20px;
+    border-radius: 0;
+}
+
+.realty-slideshow-wrapper.fullscreen .realty-slide img {
+    object-fit: contain; /* 이미지가 잘리지 않고 다 보이도록 설정 */
+}
+
+/* 전체 화면일 때 썸네일 스타일 */
+.realty-slideshow-wrapper.fullscreen .realty-thumbnails-container {
+    height: 80px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.realty-slideshow-wrapper.fullscreen .slider-thumbnail {
+    opacity: 0.6;
+}
+.realty-slideshow-wrapper.fullscreen .slider-thumbnail.active {
+    opacity: 1;
+    border-color: var(--primary-color);
+}
+
+/* 확대 버튼 스타일 */
+.realty-expand-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background-color 0.2s;
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
+}
+
+.realty-expand-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* 닫기 버튼 스타일 (기존에는 숨김) */
+.realty-close-btn {
+    display: none;
+}
+
+/* 전체 화면일 때 닫기 버튼 표시 */
+.realty-slideshow-wrapper.fullscreen .realty-close-btn {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 30;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.realty-slideshow-wrapper.fullscreen .realty-close-btn:hover {
+    color: #ccc;
+}
+
+/* 전체 화면일 때 기존 확대 버튼 숨김 */
+.realty-slideshow-wrapper.fullscreen .realty-expand-btn {
+    display: none;
+}
+
+/* 썸네일 기본 스타일 (상세 페이지) */
+.realty-thumbnails-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.slider-thumbnail {
+    width: 80px;
+    height: 60px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.slider-thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+.slider-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* --- 반응형 --- */
+@media (max-width: 768px) {
+    #realty-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .realty-detail-container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .realty-detail-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    .realty-detail-main-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #realty-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

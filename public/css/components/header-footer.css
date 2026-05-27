@@ -1,0 +1,369 @@
+/* =================================== */
+/* Header & Footer                     */
+/* =================================== */
+
+/* --- 헤더 --- */
+header {
+    background-color: white;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+}
+
+header .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-auth a {
+    font-weight: 600;
+    margin-left: 15px;
+    font-size: 16px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.header-auth a:hover {
+    color: var(--primary-color);
+}
+
+#mobile-notice {
+    display: none;
+}
+
+/* --- 사용자 환영 메시지 --- */
+#user-welcome-section #welcome-message {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #333;
+    margin: 0;
+}
+
+#user-welcome-section #login-status-info {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #808080;
+}
+
+/* --- 푸터 --- */
+footer {
+    background-color: #343a40;
+    color: #ccc;
+    margin-top: 60px;
+}
+
+footer .content-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+footer p {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 17px;
+}
+
+footer .foot-link {
+    font-size: 16px;
+    text-align: center;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 768px) {
+    header .content-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-auth {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    #user-welcome-section {
+        margin-top: 10px;
+        padding-left: 6.5px;
+    }
+
+    #user-welcome-section #welcome-message {
+        font-size: 1.1em;
+        letter-spacing: -1px;
+    }
+
+    #user-welcome-section #login-status-info {
+        font-size: 0.9em;
+        letter-spacing: -1px;
+    }
+    
+    #mobile-notice {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+    }
+}
+
+/* ▼▼▼ [추가] 햄버거 메뉴 스타일 ▼▼▼ */
+.header-right-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.hamburger-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.hamburger-menu .fa-bars {
+    font-size: 22px;
+    color: var(--text-color-light);
+    padding: 8px;
+    transition: color 0.2s;
+}
+
+.hamburger-menu:hover .fa-bars {
+    color: var(--primary-color);
+}
+
+.dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    z-index: 101;
+    min-width: 180px;
+    padding: 8px 0;
+    list-style: none;
+}
+
+.hamburger-menu:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+/* ▲▲▲ [추가] 햄버거 메뉴 스타일 ▲▲▲ */
+
+
+/* ▼▼▼ [신규] 알림 센터 스타일 ▼▼▼ */
+.notification-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 5px; /* 햄버거 메뉴와의 간격 */
+    cursor: pointer;
+}
+
+/* 로그인 전에는 숨김 */
+.notification-center.hidden {
+    display: none;
+}
+
+.notification-icon {
+    font-size: 20px;
+    color: #555;
+    padding: 8px;
+    transition: color 0.2s;
+}
+
+.notification-center:hover .notification-icon {
+    color: var(--primary-color);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 1.2;
+    border: 2px solid white;
+    transform: translate(20%, -20%);
+    display: none; /* 기본적으로 숨김, JS로 제어 */
+}
+
+.notification-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    position: absolute;
+    top: 100%;
+    right: -60px; /* 위치 조정 */
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 102;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* PC에서 hover 시 보여주기 (모바일은 클릭 방식 고려) */
+@media (min-width: 769px) {
+    .notification-center:hover .notification-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* 모바일이나 클릭으로 활성화된 상태를 위한 클래스 */
+.notification-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.notification-header {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.notification-header h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+    font-weight: 700;
+}
+
+/* [수정] 알림 버튼 그룹 스타일 */
+.notification-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.read-all-btn, .delete-all-btn {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.read-all-btn {
+    color: var(--text-color-light);
+}
+.read-all-btn:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.delete-all-btn {
+    color: var(--text-color-light);
+}
+.delete-all-btn:hover {
+    color: var(--danger-color);
+    text-decoration: underline;
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: block;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background-color: #f9f9f9;
+}
+
+.notification-item.unread {
+    background-color: #eef7ff; /* 읽지 않은 알림 배경색 (연한 파랑) */
+}
+
+.notification-item.unread::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.notification-time {
+    display: block;
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 4px;
+}
+
+.notification-empty {
+    padding: 30px 20px;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+/* ▲▲▲ [신규] 알림 센터 스타일 ▲▲▲ */

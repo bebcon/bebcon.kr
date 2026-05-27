@@ -1,0 +1,413 @@
+/* =================================== */
+/* My Page Design Renewal (v2.0)       */
+/* =================================== */
+
+/* --- Page Layout --- */
+#my-page-main {
+    padding-bottom: 60px;
+}
+
+#my-page-main .page-header {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: #222;
+    border-bottom: 2px solid #f1f3f5;
+    padding-bottom: 15px;
+}
+
+#my-page-main .page-header h2 {
+    font-size: 2em;
+    font-weight: 800;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 유틸리티 클래스 (stock.css와 통일) */
+.price-up { color: #E15241 !important; }
+.price-down { color: #0051C7 !important; }
+.price-even { color: #6c757d !important; }
+
+
+/* --- Assets Summary (자산 현황 카드) --- */
+.assets-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 40px;
+    margin-top: 28px;
+}
+
+.summary-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 각 카드별 포인트 컬러 바 */
+.summary-item:nth-child(1) { border-top: 5px solid var(--primary-color); }
+.summary-item:nth-child(2) { border-top: 5px solid #2ecc71; }
+.summary-item:nth-child(3) { border-top: 5px solid #f39c12; }
+
+.summary-item small {
+    display: block;
+    color: #666;
+    font-size: 1.05em;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.summary-item strong {
+    display: block;
+    font-size: 2em;
+    font-weight: 800;
+    color: #333;
+    letter-spacing: -0.5px;
+    font-feature-settings: "tnum";
+}
+
+/* 총 손익 카드 강조 */
+.summary-item:last-child strong {
+    font-size: 2.2em;
+}
+
+
+/* --- Portfolio Table (보유 주식) --- */
+.portfolio-container {
+    background: #fff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.portfolio-container h4 {
+    margin: 0 0 20px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-responsive-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* 부드러운 스크롤 */
+}
+
+.portfolio-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+    min-width: 600px; /* 모바일에서 가로 스크롤 유도 */
+}
+
+.portfolio-table th {
+    padding: 15px 10px;
+    background-color: #f8f9fa;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95em;
+    border-bottom: 2px solid #eee;
+    white-space: nowrap;
+}
+
+.portfolio-table th:first-child { border-top-left-radius: 8px; }
+.portfolio-table th:last-child { border-top-right-radius: 8px; }
+
+.portfolio-table td {
+    padding: 18px 10px;
+    border-bottom: 1px solid #f1f3f5;
+    font-size: 1em;
+    color: #333;
+    font-feature-settings: "tnum";
+}
+
+.portfolio-table tr:last-child td {
+    border-bottom: none;
+}
+
+.portfolio-table tr:hover td {
+    background-color: #fcfcfc;
+}
+
+/* 종목명 스타일 */
+.portfolio-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 700;
+}
+
+.portfolio-table td:first-child a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.portfolio-table td:first-child a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* 수익률 컬럼 강조 */
+.portfolio-table td:last-child {
+    font-weight: 700;
+}
+
+
+/* --- Accordion Menu (활동 내역) --- */
+.accordion-section {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    transition: box-shadow 0.2s;
+}
+
+.accordion-section:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.accordion-header {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+    background-color: #fbfbfb;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 1.15em;
+    font-weight: 700;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.accordion-icon {
+    font-size: 1em;
+    color: #aaa;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-icon.open {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out, opacity 0.4s;
+    opacity: 0;
+    background-color: #fff;
+}
+
+.accordion-content.open {
+    max-height: 800px; /* 내용에 따라 조절 */
+    opacity: 1;
+    padding: 0 25px 25px;
+    border-top: 1px solid #f1f3f5;
+    overflow-y: auto;
+}
+
+
+/* --- My Activity Items (게시글, 뉴스, 민원) --- */
+.my-post-item,
+.my-news-item,
+.my-complaint-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    padding: 18px 20px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.my-post-item:hover,
+.my-news-item:hover,
+.my-complaint-item:hover {
+    transform: translateX(3px);
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-color: #e0e0e0;
+}
+
+.my-post-item h4,
+.my-news-item h4,
+.my-complaint-item h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #333;
+}
+
+.my-post-item p,
+.my-complaint-item p {
+    margin: 0 0 8px 0;
+    font-size: 0.95em;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 600px;
+}
+
+.my-post-item small,
+.my-news-item small,
+.my-complaint-item small {
+    color: #999;
+    font-size: 0.85em;
+}
+
+/* 액션 버튼 그룹 */
+.my-item-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.edit-post-btn, .edit-news-btn,
+.delete-complaint-btn, .delete-news-btn, .delete-post-btn {
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-post-btn, .edit-news-btn {
+    color: #555;
+    border-color: #ddd;
+}
+.edit-post-btn:hover, .edit-news-btn:hover {
+    background-color: #f1f3f5;
+    color: #333;
+}
+
+.delete-complaint-btn, .delete-news-btn, .delete-post-btn {
+    color: #e74c3c;
+    border-color: #fadbd8;
+    background-color: #fdf2f0;
+}
+.delete-complaint-btn:hover, .delete-news-btn:hover, .delete-post-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+    border-color: #e74c3c;
+}
+
+
+/* --- Account Settings (회원정보 수정) --- */
+#mypage-mine {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.gg-content-section {
+    flex: 1;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.gg-content-section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    border-bottom: 2px solid #f5f7fa;
+    padding-bottom: 15px;
+    color: #333;
+}
+
+/* 폼 스타일 재정의 */
+.gg-content-section .form-group input {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.gg-content-section .form-group input:focus {
+    background-color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 68, 122, 0.1);
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    /* 자산 요약 카드 세로 배치 */
+    .assets-summary {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .summary-item {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .summary-item small { margin-bottom: 0; }
+    
+    /* 테이블 모바일 최적화 */
+    .portfolio-container { padding: 20px; }
+    
+    .portfolio-table th, 
+    .portfolio-table td {
+        padding: 12px 8px;
+        font-size: 0.9em;
+    }
+    
+    /* 내 정보 수정 섹션 세로 배치 */
+    #mypage-mine {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* 아코디언 모바일 여백 조정 */
+    .accordion-header { padding: 15px 20px; }
+    .accordion-content.open { padding: 0 15px 20px; }
+}

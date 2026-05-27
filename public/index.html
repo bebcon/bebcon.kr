@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안현민국 │ 안현을 새롭게, 국민을 빛나게</title>
+    <meta name="description" content="다시 뛰는 공정 국가 안현민국 누리집입니다.">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov.min.css" />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/header-footer.css">
+    <link rel="stylesheet" href="/css/pages/main-page.css">
+
+    <meta property="og:title" content="안현민국 │ 안현을 새롭게, 국민을 빛나게">
+    <meta property="og:description" content="다시 뛰는 공정 국가, 안현민국 누리집입니다.">
+    <meta property="og:image" content="https://bebcon.kr/images/og-image.png">
+    <meta property="og:url" content="https://bebcon.kr">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="안현민국">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="안현민국">
+    <meta name="twitter:description" content="안현을 새롭게, 국민을 빛나게">
+    <meta name="twitter:image" content="https://bebcon.kr/images/og-image.png">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+    <meta name="google-site-verification" content="ULv8I55tAAO8s30g3q1E5VhTZIMXad4TtE_r8QIq7I4" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3878025993006488"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header>
+    <div class="content-wrapper">
+        <a href="/" class="logo-link">
+            <img src="/images/logo.png" alt="안현민국 로고">
+        </a>
+        
+        <div id="user-welcome-section" style="display: none;">
+            <p id="welcome-message"></p>
+            <small id="login-status-info"></small>
+        </div>
+        <div id="mobile-notice">
+        <span>모바일 환경에서는 사용이 불편할 수 있습니다.</span>
+        </div>
+
+        <div class="header-right-container">
+            <div id="header-auth-status" class="header-auth">
+            </div>
+
+            <div class="notification-center hidden" id="notification-center">
+                <i class="fa-regular fa-bell notification-icon"></i>
+                <span class="notification-badge" id="notification-badge">0</span>
+                
+                <div class="notification-dropdown" id="notification-dropdown">
+                    <div class="notification-header">
+                        <h5>알림</h5>
+                        <button class="read-all-btn" id="read-all-btn">모두 읽음</button>
+                    </div>
+                    <ul class="notification-list" id="notification-list">
+                        <li class="notification-empty">새로운 알림이 없습니다.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="hamburger-menu">
+                <i class="fa-solid fa-bars"></i>
+                <div class="dropdown-menu">
+                        <a href="/"><i class="fas fa-home"></i>⠀메인</a>
+                        <a href="/news"><i class="fa-solid fa-newspaper"></i>⠀뉴스</a>
+                        <a href="/community"><i class="fa-solid fa-users"></i>⠀커뮤니티</a>
+                        <a href="/stock-main.html"><i class="fa-solid fa-arrow-trend-up"></i>⠀주식</a>
+                        <a href="/ebooks"><i class="fa-solid fa-book"></i>⠀전자책</a>
+                        <a href="/image-hosting"><i class="fa-solid fa-photo-film"></i>⠀호스팅</a>
+                        <a href="/realty"><i class="fa-solid fa-building"></i>⠀부동산</a>
+                        <a href="/complaints"><i class="fa-solid fa-comment"></i>⠀민원</a>
+                        <a href="/schedule"><i class="fa-solid fa-calendar-days"></i>⠀일정</a>
+                        <a href="http://bebcon.kr:8100/" target="_blank"><i class="fa-solid fa-map"></i>⠀지도</a>
+                        <a href="/president.html"><i class="fa-solid fa-user-tie"></i>⠀대통령실</a>
+                        <a href="/introduction.html"><i class="fa-solid fa-circle-info"></i>⠀소개</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+    <main>
+        <section class="main-banner">
+            <div class="slideshow">
+                <a href="https://bebcon.kr/news/1769098036322" class="slide-item active slide-1" data-slide-number="1"></a>
+                <a class="slide-item slide-2" data-slide-number="2"></a>
+                <a href="/stock-main" class="slide-item slide-3" data-slide-number="3"></a>
+                <a href="https://playentry.org/project/68cfbd5b779efc05a7761efe" class="slide-item slide-4" data-slide-number="4"></a>
+                <a href="https://bebcon.kr/headwar.html" class="slide-item slide-5" data-slide-number="5"></a>
+            </div>
+            
+            <div class="banner-overlay"></div>
+
+            <div class="slide-controls-container">
+                <div class="slide-controls">
+                    <a href="#" id="prev-slide" title="이전"><i class="fa-solid fa-chevron-left"></i></a>
+                    <span id="slide-counter" class="slide-counter">1 / 5</span>
+                    <a href="#" id="next-slide" title="다음"><i class="fa-solid fa-chevron-right"></i></a>
+                    <div class="divider-vertical"></div>
+                    <a href="#" id="pause-btn" title="일시정지"><i class="fa-solid fa-pause"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="integrated-search-section">
+            <div class="content-wrapper">
+                <form id="integrated-search-form">
+                    <div class="search-input-wrapper">
+                        <input type="text" id="integrated-search-input" placeholder="뉴스, 도서, 민원, 주식, 부동산 등 통합 검색" autocomplete="off">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="info-banner-section">
+            <div class="content-wrapper">
+                <nav class="icon-menu-nav" aria-label="주요 서비스 바로가기">
+                    <ul class="icon-menu-list">
+                        <li>
+                            <a href="/schedule" class="menu-link">
+                                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                <span>일정</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/complaints" class="menu-link">
+                                <i class="fa-solid fa-comment" aria-hidden="true"></i>
+                                <span>민원</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/news" class="menu-link">
+                                <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+                                <span>뉴스</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/community" class="menu-link">
+                                <i class="fa-solid fa-users" aria-hidden="true"></i>
+                                <span>커뮤니티</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ebook-list.html" class="menu-link">
+                                <i class="fa-solid fa-book" aria-hidden="true"></i>
+                                <span>전자책</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/stock-main.html" class="menu-link">
+                                <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
+                                <span>주식</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/realty" class="menu-link">
+                                <i class="fa-solid fa-building" aria-hidden="true"></i>
+                                <span>부동산</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://bebcon.kr:8100/" target="_blank" class="menu-link">
+                                <i class="fa-solid fa-map" aria-hidden="true"></i>
+                                <span>지도</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/image-hosting" class="menu-link">
+                                <i class="fa-solid fa-photo-film" aria-hidden="true"></i>
+                                <span>호스팅</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/president.html" class="menu-link">
+                                <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                                <span>대통령실</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/introduction.html" class="menu-link">
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                                <span>소개</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+            
+            
+        <section class="tab-section">
+            <div class="content-wrapper">
+          
+              <div class="tab-header">
+                <!-- 1단: 서비스 탭 -->
+                <nav class="tab-nav tab-nav--primary" aria-label="서비스 탭">
+                  <button class="tab-button active" data-group="service" data-tab="news">
+                    <i class="fa-solid fa-newspaper"></i> 뉴스
+                  </button>
+                  <button class="tab-button" data-group="service" data-tab="community">
+                    <i class="fa-solid fa-users"></i> 커뮤니티
+                  </button>
+                  <button class="tab-button" data-group="service" data-tab="ebooks">
+                    <i class="fa-solid fa-book"></i> 전자책
+                  </button>
+                  <button class="tab-button" data-group="service" data-tab="stocks">
+                    <i class="fa-solid fa-arrow-trend-up"></i> 주식
+                  </button>
+                  <button class="tab-button" data-group="service" data-tab="realty">
+                    <i class="fa-solid fa-building"></i> 부동산
+                  </button>
+                </nav>
+          
+                <!-- 2단: 정렬 탭 -->
+                <nav class="tab-nav tab-nav--secondary" aria-label="정렬 탭">
+
+                </nav>
+              </div>
+          
+              <div class="tab-content">
+                <div id="tab-news" class="tab-pane active" data-service="news">
+                  <ul id="service-list-news"></ul>
+                  <a class="tab-more-link" href="/news">뉴스 더보기</a>
+                </div>
+          
+                <div id="tab-community" class="tab-pane" data-service="community">
+                  <ul id="service-list-community"></ul>
+                  <a class="tab-more-link" href="/community">커뮤니티 더보기</a>
+                </div>
+          
+                <!-- 너는 아이콘 메뉴에 /ebook-list.html로 연결 중이니까 일단 그걸로 통일 -->
+                <div id="tab-ebooks" class="tab-pane" data-service="ebooks">
+                  <ul id="service-list-ebooks"></ul>
+                  <a class="tab-more-link" href="/ebook-list.html">전자책 더보기</a>
+                </div>
+          
+                <div id="tab-stocks" class="tab-pane" data-service="stocks">
+                  <ul id="service-list-stocks"></ul>
+                  <a class="tab-more-link" href="/stock-main.html">주식 더보기</a>
+                </div>
+          
+                <div id="tab-realty" class="tab-pane" data-service="realty">
+                  <ul id="service-list-realty"></ul>
+                  <a class="tab-more-link" href="/realty">부동산 더보기</a>
+                </div>
+              </div>
+          
+            </div>
+          </section>          
+        
+    </main>
+
+    
+    <footer>
+        <div class="content-wrapper">
+            
+            <p><i class="fa-regular fa-copyright"></i>⠀Republic of Anhyeon. All Rights Reserved.</p>
+            <p><i class="fa-solid fa-location-dot"></i>⠀안현특별시 성초구 안현대로 1 (암동, 정부안현청사)⠀│⠀<a href="https://discord.gg/m879pfYX2M"><i class="fa-brands fa-discord"></i>⠀안현민국 디스코드</a></p>
+            
+            <hr class="divider">
+            <p>본 사이트는 마인크래프트 도시 세계관 기반의 가상 창작물입니다. 이용에 착오 없으시길 바랍니다.</p>
+            <p><a href="https://www.bebcon.kr/privacy.html"><strong>개인정보처리방침</strong></a> <a href="https://www.bebcon.kr/terms.html">이용약관</a></p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/js/script.js" defer></script>
+    <script src="/js/pages/home.js" defer></script>
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "14794c10a277160";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+</body>
+</html>

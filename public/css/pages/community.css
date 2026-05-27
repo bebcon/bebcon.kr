@@ -1,0 +1,368 @@
+/* =================================== */
+/* Community Page                      */
+/* =================================== */
+
+/* --- 커뮤니티 그리드 레이아웃 --- */
+#community-grid {
+    display: grid;
+    /* 반응형 그리드: 최소 280px 너비, 화면 크기에 따라 열 개수 자동 조절 */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* --- 포스트 카드 스타일 --- */
+.post-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
+}
+
+/* 썸네일 영역 */
+.post-thumbnail-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 16:9 비율 고정 */
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+    transition: transform 0.5s ease;
+}
+
+.post-card:hover .post-thumbnail-wrapper img {
+    transform: scale(1.05); /* 호버 시 확대 효과 */
+}
+
+/* [수정] 썸네일 없을 때 (No Image) - 꽉 차게 수정 */
+.post-thumbnail-wrapper.no-image img {
+    object-fit: cover; /* cover로 변경하여 영역을 꽉 채움 */
+    width: 100%;
+    height: 100%;
+    opacity: 1; /* 투명도 제거 (원래 색상 유지) */
+}
+
+/* 콘텐츠 영역 */
+.post-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.post-card-title {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #222;
+    /* 2줄 말줄임 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-card-preview {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    /* 3줄 말줄임 */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1; /* 메타 정보를 바닥으로 밀어내기 */
+}
+
+/* 메타 정보 (작성자, 날짜, 좋아요) */
+.post-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 15px;
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.post-author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    color: #555;
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.post-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-stats span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.highlight-likes {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+/* [수정] 검색바 스타일 개선 - 가로 꽉 차게 수정 */
+#community-search-form {
+    display: flex;
+    width: 100%; /* 너비 100%로 설정 */
+    flex-grow: 1;
+    max-width: none; /* 최대 너비 제한 해제 (필요시 조절) */
+    margin-left: 0; /* 정렬 초기화 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+#community-search-form .autocomplete-container {
+    flex-grow: 1;
+}
+
+#community-search-form .autocomplete-container input {
+    width: 100%;
+    height: 40px; /* 높이 약간 증가 */
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #ccc;
+    border-right: none;
+    padding: 0 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    /* Pretendard GOV 폰트 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+#community-search-form button {
+    height: 40px;
+    padding: 0 25px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    transition: background-color 0.2s;
+    font-size: 16px;
+    flex-shrink: 0;
+    /* Pretendard GOV 폰트 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+#community-search-form button:hover {
+    background-color: var(--sub-color);
+}
+
+
+/* --- 게시물 상세 (post-detail.html) 유지 --- */
+#post-detail-container {
+    background: white;
+    padding: 40px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+.post-detail-header h2 {
+    font-size: 2.2em;
+    margin: 0 0 10px;
+}
+
+.post-detail-meta {
+    color: var(--text-color-light);
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-detail-meta span:not(:last-child) {
+    margin-right: 15px;
+}
+
+/* [수정] 대표 이미지 스타일 개선 */
+.post-detail-image {
+    display: block;
+    margin: 30px auto;
+    max-height: 500px;
+    max-width: 100%;
+    border-radius: var(--border-radius-base);
+    object-fit: contain;
+}
+
+.toastui-editor-contents {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+/* [수정] 본문 이미지 스타일 개선 */
+.toastui-editor-contents img {
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto 20px;
+    max-height: 500px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.vote-section {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.vote-button {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 500;
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: 10px 23px;
+    border-radius: 30px;
+    font-size: 16.5px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.vote-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* --- 댓글 및 대댓글 --- */
+#comment-section {
+    margin-top: 40px;
+}
+
+#comment-section h4 {
+    font-size: 1.2em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.comment-item {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+.comment-author {
+    flex-shrink: 0;
+    font-weight: 700;
+}
+
+.comment-content-wrapper {
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.comment-text-content {
+    line-height: 1.7;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.comment-date {
+    font-size: 0.85em;
+    color: #999;
+    margin-top: 8px;
+}
+
+.edited-badge {
+    color: #999;
+    font-size: 0.9em;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.replies-container {
+    padding-left: 30px;
+    margin-top: 20px;
+    border-left: 2px solid #e9ecef;
+}
+
+.reply-form-container {
+    margin-top: 15px;
+    padding-left: 45px;
+}
+
+/* --- 글쓰기 (write-post.html) --- */
+#write-post-section .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+#write-post-section .form-group input[type="file"] {
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+/* --- 반응형 --- */
+@media (max-width: 768px) {
+    #community-grid {
+        grid-template-columns: 1fr; /* 모바일 1열 */
+        gap: 20px;
+    }
+    
+    .post-card-preview {
+        -webkit-line-clamp: 2; /* 모바일은 2줄로 줄임 */
+    }
+
+    #community-search-form {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #post-detail-container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .post-detail-image,
+    .toastui-editor-contents img {
+        max-width: 100%;
+    }
+}

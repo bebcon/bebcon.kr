@@ -1,0 +1,70 @@
+/* =================================== */
+/* Post Card                           */
+/* =================================== */
+
+.post-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.post-thumbnail,
+.post-thumbnail-placeholder {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: #f0f2f5;
+}
+
+.post-thumbnail-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #ccc;
+}
+
+.post-card-content {
+    padding: 20px;
+    padding-bottom: 1px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card-title {
+    margin: 0 0 5px;
+    font-size: 1.1em;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 텍스트를 2줄로 제한 */
+    -webkit-box-orient: vertical;
+}
+
+.post-card-author {
+    margin-top: 0px;
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    padding-top: 0px;
+}
+
+.post-card-likes {
+    margin-top: 0px;
+    font-size: 0.9em;
+    color: var(--text-color-light);
+    padding-top: 0px;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안현민국 │ 민원</title>
+    <meta name="description" content="다시 뛰는 공정 국가 안현민국 누리집입니다.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- [수정] CSS 파일 연결 변경 -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/header-footer.css">
+    <link rel="stylesheet" href="/css/components/buttons.css">
+    <link rel="stylesheet" href="/css/components/forms.css">
+    <link rel="stylesheet" href="/css/pages/complaints.css">
+    <link rel="stylesheet" href="/css/components/pagination.css">
+
+    <meta property="og:title" content="안현민국">
+    <meta property="og:description" content="안현을 새롭게, 시민을 빛나게">
+    <meta property="og:image" content="https://bebcon.kr/images/og-image.png">
+    <meta property="og:url" content="https://bebcon.kr">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="안현민국">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="안현민국">
+    <meta name="twitter:description" content="안현을 새롭게, 시민을 빛나게">
+    <meta name="twitter:image" content="https://bebcon.kr/images/og-image.png">
+    <meta name="google-site-verification" content="ULv8I55tAAO8s30g3q1E5VhTZIMXad4TtE_r8QIq7I4" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3878025993006488"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <a href="/" class="logo-link">
+                <img src="/images/logo.png" alt="안현민국 로고">
+            </a>
+            
+            <div id="user-welcome-section" style="display: none;">
+                <p id="welcome-message"></p>
+                <small id="login-status-info"></small>
+            </div>
+
+    
+            <div class="header-right-container">
+                <div id="header-auth-status" class="header-auth">
+                </div>
+    
+                <div class="hamburger-menu">
+                    <i class="fa-solid fa-bars"></i>
+                    <div class="dropdown-menu">
+                        <a href="/"><i class="fas fa-home"></i>⠀메인</a>
+                        <a href="/news"><i class="fa-solid fa-newspaper"></i>⠀뉴스</a>
+                        <a href="/community"><i class="fa-solid fa-users"></i>⠀커뮤니티</a>
+                        <a href="/stock-main.html"><i class="fa-solid fa-arrow-trend-up"></i>⠀주식</a>
+                        <a href="/ebooks"><i class="fa-solid fa-book"></i>⠀전자책</a>
+                        <a href="/image-hosting"><i class="fa-solid fa-photo-film"></i>⠀호스팅</a>
+                        <a href="/realty"><i class="fa-solid fa-building"></i>⠀부동산</a>
+                        <a href="/complaints"><i class="fa-solid fa-comment"></i>⠀민원</a>
+                        <a href="/schedule"><i class="fa-solid fa-calendar-days"></i>⠀일정</a>
+                        <a href="http://bebcon.kr:8100/" target="_blank"><i class="fa-solid fa-map"></i>⠀지도</a>
+                        <a href="/president.html"><i class="fa-solid fa-user-tie"></i>⠀대통령실</a>
+                        <a href="/introduction.html"><i class="fa-solid fa-circle-info"></i>⠀소개</a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-wrapper">
+            <section class="content-section" id="civil-complaints-page">
+                <h2><i class="fa-solid fa-comment"></i>⠀민원</h2>
+                <p>민원의 상태를 확인하고 답변을 열람할 수 있으며,<br>
+                간단한 질문 또한 처리해 드릴 수 있습니다.</p>
+                
+                <hr class="divider">
+
+                <h3>의견을 남겨주세요</h3>
+                <form id="complaint-form" class="form-container" style="margin: 20px 0; max-width: none;">
+                    <div class="form-group"><input type="text" id="author" placeholder="로그인 후 이용 가능합니다." readonly></div>
+                    <div class="form-group"><input type="text" id="title" placeholder="제목을 입력하세요" required></div>
+                    <div class="form-group"><textarea id="content" rows="5" placeholder="내용을 입력하세요" required></textarea></div>
+                    <button type="submit" class="button-primary"><i class="fa-solid fa-arrow-up-from-bracket"></i>⠀제출하기</button>
+                </form>
+
+                <hr class="divider">
+
+                <h3>민원 목록</h3>
+                <div id="complaints-list">
+                </div>
+                <div class="pagination" id="complaints-pagination"></div>
+            </section>
+        </div>
+    </main>
+<footer>
+    <div class="content-wrapper">
+        <p><i class="fa-regular fa-copyright"></i>⠀Republic of Anhyeon. All Rights Reserved.</p>
+        <p><i class="fa-solid fa-location-dot"></i>⠀안현특별시 성초구 안현대로 1 (암동, 정부안현청사)⠀│⠀<a href="https://discord.gg/m879pfYX2M"><i class="fa-brands fa-discord"></i>⠀안현민국 디스코드</a></p>
+        <hr class="divider">
+        <p><a href="https://www.bebcon.kr/privacy.html"><strong>개인정보처리방침</strong></a> <a href="https://www.bebcon.kr/terms.html">이용약관</a></p>
+    </div>
+</footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/js/script.js"></script>
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "14794c10a277160";
+    if(window.wcs) {
+      wcs_do();
+    }
+    </script>
+</body>
+</html>

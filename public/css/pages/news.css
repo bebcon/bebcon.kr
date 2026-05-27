@@ -1,0 +1,543 @@
+/* =================================== */
+/* News Pages                          */
+/* =================================== */
+
+/* --- 뉴스 목록 (news.html) --- */
+
+/* 필터 바 스타일 (공통 스타일 forms.css 기반 + 뉴스 페이지 전용 수정) */
+#news-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    align-items: center;
+}
+
+#news-filter-bar select {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* forms.css의 변수 대신 직접 지정하여 일관성 확보 */
+    font-size: 15px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+/* --- [리디자인] 뉴스 리스트 컨테이너 --- */
+#news-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 뉴스 아이템 카드 (가로형 레이아웃) */
+#news-list-container .news-item {
+    display: flex; /* Flexbox로 썸네일과 텍스트 좌우 배치 */
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    color: inherit;
+    gap: 20px; /* 썸네일과 텍스트 사이 간격 */
+    align-items: stretch; /* 높이를 꽉 채우도록 */
+}
+
+#news-list-container .news-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+/* 1. 썸네일 영역 */
+.news-thumbnail-wrapper {
+    flex-shrink: 0; /* 크기가 줄어들지 않도록 고정 */
+    width: 140px;   /* 정사각형 크기 지정 */
+    height: 140px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+}
+
+.news-thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 비율 유지하며 꽉 채우기 */
+    transition: transform 0.3s ease;
+}
+
+/* 호버 시 이미지 살짝 확대 효과 */
+#news-list-container .news-item:hover .news-thumbnail-wrapper img {
+    transform: scale(1.05);
+}
+
+/* 이미지가 없을 때 보여줄 플레이스홀더 */
+.news-thumbnail-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    font-size: 2.5rem; /* 아이콘 크기 */
+    background-color: #f1f3f5;
+}
+
+/* 2. 텍스트 콘텐츠 영역 */
+.news-content-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 제목은 위로, 메타 정보는 아래로 */
+    min-width: 0; /* Flexbox 내부 텍스트 말줄임 처리를 위해 필수 */
+}
+
+/* 제목 스타일 */
+.news-title {
+    margin: 8px 0 -10px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #222;
+    /* 긴 제목 1줄 처리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#news-list-container .news-item:hover .news-title {
+    color: var(--primary-color);
+}
+
+/* 본문 요약 스타일 (2줄 말줄임) */
+.news-summary {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2줄까지만 표시 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.2em; /* line-height * 2 */
+}
+
+/* 메타 정보 (배지, 날짜, 작성자 등) */
+.news-meta-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: auto; /* 항상 하단에 위치 */
+}
+
+.news-meta-divider {
+    width: 1px;
+    height: 10px;
+    background-color: #ddd;
+}
+
+/* 카테고리 배지 스타일 */
+.news-badges {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0; /* 제목 위쪽이 아닌 메타 정보와 함께 배치하거나 제목 위에 배치 가능. 여기선 텍스트 래퍼 안에서 처리 */
+}
+
+.news-category-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.news-category-badge.primary {
+    color: var(--primary-color);
+    background-color: #e7f5ff;
+}
+
+
+/* --- 뉴스 상세 (article.html) --- */
+/* 기존 상세 페이지 스타일은 유지 */
+#article-container {
+    background: white;
+    padding: 40px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+#article-container h2 {
+    font-size: 2.2em;
+    margin: 0 0 10px;
+}
+
+#article-container .article-meta {
+    color: var(--text-color-light);
+    margin: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.article-meta .badges-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.article-meta .info-container {
+    display: flex;
+    gap: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.article-category-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.article-category-badge {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.article-subcategory-badge {
+    background-color: #6c757d;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+#article-container .toastui-editor-contents {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;
+    font-size: 23.5px;
+    line-height: 1.8;
+    min-height: 200px;
+    padding: 20px 0;
+    margin-top: -28px;
+}
+
+/* [수정] 뉴스 상세 페이지 본문 이미지 스타일 개선 */
+/* 이미지가 너무 커지지 않도록 제한하고 가운데 정렬 */
+.toastui-editor-contents img {
+    display: block;           /* 마진 자동 적용을 위해 블록 요소로 변경 */
+    margin: 10px auto 35px;   /* 상하 여백 조정 및 좌우 auto로 중앙 정렬 */
+    max-width: 75%;
+    object-fit: contain;      /* 비율 유지 */
+}
+
+.article-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 40px;
+}
+
+.vote-section {
+    text-align: center;
+}
+
+.vote-button {
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 500;
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: 10px 23px;
+    border-radius: 30px;
+    font-size: 16.5px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.vote-button:hover {
+    background-color: #f0f0f0;
+}
+.vote-button .fa-solid {
+    margin-right: 8px;
+}
+
+/* --- 새 뉴스 작성/수정 (write-news.html, edit-news.html) --- */
+.form-subsection {
+    border: 1px solid var(--border-color);
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: var(--border-radius-base);
+    margin-bottom: 20px;
+}
+.form-subsection legend {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0 10px;
+}
+
+.selection-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.selection-group .form-group {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+.selection-group .form-group select {
+    height: 48px;
+}
+.selection-group button {
+    width: auto;
+    flex-shrink: 0;
+}
+
+#selected-stocks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.selected-stock-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+.selected-stock-item > span {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.selected-stock-item .sentiment-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+.selected-stock-item .sentiment-options input[type="radio"] {
+    display: none;
+}
+.selected-stock-item .sentiment-options label {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: 1px solid #dee2e6;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+.selected-stock-item .sentiment-options input[type="radio"]:checked + label {
+    font-weight: bold;
+}
+.selected-stock-item .sentiment-options input[value="positive"]:checked + label {
+    background-color: #ffebee;
+    color: #c62828;
+    border-color: #ef9a9a;
+}
+.selected-stock-item .sentiment-options input[value="negative"]:checked + label {
+    background-color: #e7f5ff;
+    color: #0d6efd;
+    border-color: #a5d8ff;
+}
+.selected-stock-item .sentiment-options input[value="neutral"]:checked + label {
+    background-color: #f5f5f5;
+    color: #424242;
+    border-color: #e0e0e0;
+}
+.remove-stock-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #868e96;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+.remove-stock-btn:hover {
+    color: #343a40;
+}
+
+#selected-categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.selected-category-item {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-base);
+    overflow: hidden;
+}
+.selected-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+.selected-category-header h5 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.remove-category-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: #868e96;
+    cursor: pointer;
+    padding: 0 5px;
+}
+.subcategory-checkbox-list {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.checkbox-item input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+.checkbox-item label {
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+#editor .toastui-editor-defaultUI {
+    display: flex;
+    flex-direction: column;
+}
+
+#editor .toastui-editor-main {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+#editor .toastui-editor-md-container,
+#editor .toastui-editor-ww-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* --- 관련 뉴스 (stock-detail.html 등에서 사용) --- */
+#related-news-section h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.related-news-item {
+    display: block;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: var(--border-radius-base);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 15px;
+}
+.related-news-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+}
+.related-news-item h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.related-news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: var(--text-color-light);
+}
+.sentiment-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+.sentiment-badge.sentiment-positive { color: var(--danger-color); }
+.sentiment-badge.sentiment-negative { color: #3498db; }
+
+
+/* --- 반응형 --- */
+@media (max-width: 768px) {
+    #news-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    /* 모바일에서는 썸네일 크기를 줄이거나 상단으로 배치 */
+    #news-list-container .news-item {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .news-thumbnail-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .news-title {
+        font-size: 1.1rem;
+        white-space: normal; /* 모바일에서는 2줄 허용 */
+        margin-bottom: 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .news-summary {
+        display: none; /* 모바일 공간 부족 시 본문 요약 숨김 처리 */
+    }
+
+    /* 상세 페이지 */
+    #article-container {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    #article-container h2 {
+        font-size: 1.8em;
+    }
+    
+    #article-container .toastui-editor-contents {
+        font-size: 20px;
+        line-height: 1.8;
+    }
+
+    #article-container .article-meta {
+        flex-wrap: wrap;
+    }
+}

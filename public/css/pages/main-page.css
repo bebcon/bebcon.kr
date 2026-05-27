@@ -1,0 +1,792 @@
+/* =================================== */
+/* Main Page (index.html)              */
+/* =================================== */
+
+/* --- 메인 배너 --- */
+.main-banner {
+    position: relative;
+    width: 100%;
+    max-width: 1211px;
+    aspect-ratio: 1211 / 400; 
+    margin: 30px auto;
+    background-color: #eee;
+    overflow: hidden; /* 영역 밖의 슬라이드 숨김 */
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 슬라이드 트랙 (움직이는 영역) */
+.main-banner .slideshow {
+    display: flex; /* 가로로 나열 */
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* 부드러운 이동 애니메이션 */
+    will-change: transform; /* 성능 최적화 */
+}
+
+/* 개별 슬라이드 아이템 */
+.main-banner .slide-item {
+    position: relative; /* absolute 제거 */
+    min-width: 100%; /* 배너 너비만큼 차지 */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 1; /* 항상 보임 */
+    visibility: visible;
+    transform: none; /* 기존 스케일 효과 제거 */
+    flex-shrink: 0; /* 줄어들지 않도록 고정 */
+}
+
+/* 기존 active 클래스 스타일 (슬라이드 방식에서는 크게 의미 없음) */
+.main-banner .slide-item.active {
+    transform: scale(1);
+}
+
+/* 하단 그라데이션 오버레이 */
+.banner-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- 슬라이드 컨트롤러 컨테이너 --- */
+.slide-controls-container {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    z-index: 2;
+}
+
+/* 글래스모피즘 컨트롤러 */
+.main-banner .slide-controls {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.main-banner .slide-controls a {
+    color: #fff;
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s, transform 0.2s;
+    background: transparent;
+}
+
+.main-banner .slide-controls a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.divider-vertical {
+    width: 1px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+}
+
+.main-banner .slide-counter {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, sans-serif;
+    padding: 0 10px;
+    letter-spacing: 1px;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* 슬라이드 이미지 */
+.slide-1 { background-image: url('/images/cardnews_01.png'); }
+.slide-2 { background-image: url('/images/cardnews_02.png'); }
+.slide-3 { background-image: url('/images/cardnews_03.png'); }
+.slide-4 { background-image: url('/images/cardnews_04.png'); }
+.slide-5 { background-image: url('/images/cardnews_05.png'); }
+
+
+/* --- 통합 검색 섹션 스타일 --- */
+.integrated-search-section {
+    padding: 10px 0 40px;
+    background-color: transparent;
+}
+
+.search-input-wrapper {
+    display: flex;
+    max-width: 720px;
+    margin: 0 auto;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.search-input-wrapper:focus-within {
+    box-shadow: 0 6px 20px rgba(26, 68, 122, 0.2);
+    transform: translateY(-2px);
+}
+
+#integrated-search-input {
+    flex-grow: 1;
+    border: none;
+    padding: 18px 30px;
+    font-size: 1.15rem;
+    outline: none;
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    color: var(--text-color);
+}
+
+#integrated-search-input::placeholder {
+    color: #aaa;
+}
+
+.search-input-wrapper button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 35px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-input-wrapper button:hover {
+    background-color: var(--sub-color);
+}
+
+
+/* --- 정보 배너 섹션 (아이콘 메뉴) [2번 방식으로 교체됨] --- */
+.info-banner-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.icon-menu-nav {
+    width: 100%;
+}
+
+.icon-menu-list {
+    display: grid;
+    /* 아이콘 개수 늘어나도 자동 줄바꿈 */
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1100px; /* 아이콘 증가에 따른 폭 확장 */
+}
+
+.menu-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #343a40;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 25px 10px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.menu-link i {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    transition: color 0.2s;
+}
+
+
+/* =================================== */
+/* [리뉴얼] 탭 섹션 디자인 (v2.0)        */
+/* =================================== */
+
+.tab-section {
+    background-color: #f8f9fa; /* 배경색 추가로 섹션 구분 */
+    border-top: 1px solid #eee;
+}
+
+.tab-section .content-wrapper {
+    padding: 60px 20px;
+    max-width: 1000px; /* 가독성을 위해 최대 너비 제한 */
+}
+
+/* --- 탭 내비게이션 (캡슐형 스타일) --- */
+.tab-nav {
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: none; /* 기존 하단 선 제거 */
+    background-color: #e9ecef; /* 탭 배경 컨테이너 */
+    padding: 8px;
+    border-radius: 50px; /* 둥근 모서리 */
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-button {
+    padding: 10px 24px;
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #555;
+    border-radius: 40px; /* 알약 모양 */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.tab-button i {
+    font-size: 0.9em;
+}
+
+/* 탭 활성화 상태 */
+.tab-button.active {
+    background-color: #fff; /* 흰색 배경 */
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    transform: scale(1.02);
+}
+
+.tab-button:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+}
+
+/* --- 탭 콘텐츠 리스트 (카드 로우 스타일) --- */
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#latest-news-list,
+#popular-news-list,
+#latest-post-list,
+#popular-post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* 리스트 간 간격 */
+}
+
+/* 리스트 아이템 카드화 */
+#latest-news-list li,
+#popular-news-list li,
+#latest-post-list li,
+#popular-post-list li {
+    background-color: #fff;
+    padding: 18px 25px;
+    border: 1px solid transparent; /* 보더 초기화 */
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+#latest-news-list li:hover,
+#popular-news-list li:hover,
+#latest-post-list li:hover,
+#popular-post-list li:hover {
+    background-color: #fff;
+    border-color: var(--primary-color); /* 호버 시 테두리 강조 */
+    transform: translateX(5px); /* 오른쪽으로 살짝 이동 */
+    box-shadow: 0 4px 12px rgba(26, 68, 122, 0.1);
+}
+
+/* 리스트 링크 (제목) */
+#latest-news-list a,
+#popular-news-list a,
+#latest-post-list a,
+#popular-post-list a {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--text-color);
+    text-decoration: none;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 제목과 메타정보 양끝 정렬 */
+    width: 100%;
+}
+
+.item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 리스트 내 아이콘 스타일 */
+.item-icon-fire { color: #e74c3c; font-size: 0.9em; }
+.item-icon-crown { color: #f1c40f; font-size: 0.9em; }
+
+/* 메타 정보 (날짜, 작성자, 좋아요) */
+.item-meta {
+    font-size: 0.9em;
+    color: #999;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #f8f9fa;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.item-icon-thumb {
+    font-size: 0.85em;
+    color: #aaa;
+}
+
+
+/* --- 팝업 스타일 --- */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.popup-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: var(--border-radius-base, 8px);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+.popup-container.hidden .popup-content {
+    transform: scale(0.9);
+}
+
+.popup-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius-base, 8px);
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.popup-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-buttons .close-button {
+    background-color: var(--primary-color, #1A447A);
+    color: #fff;
+}
+
+.popup-buttons .close-button:hover {
+    background-color: var(--sub-color, #112E51);
+}
+
+.popup-buttons .hide-for-day-button {
+    background-color: #f1f1f1;
+    color: var(--text-color-light, #666);
+    border: 1px solid var(--border-color, #E0E0E0);
+}
+
+.popup-buttons .hide-for-day-button:hover {
+    background-color: #e9e9e9;
+}
+
+
+/* --- 반응형 --- */
+@media (max-width: 768px) {
+    /* 아이콘 메뉴 모바일 스타일 (2번 방식: grid 3열) */
+    .info-banner-section {
+        padding: 30px 15px;
+    }
+
+    .icon-menu-list {
+        grid-template-columns: repeat(3, 1fr); /* 모바일 3열 */
+        gap: 10px;
+        max-width: none;
+        padding: 0;
+    }
+
+    .menu-link {
+        width: 100%;
+        padding: 15px 5px;
+        font-size: 14px;
+    }
+
+    .menu-link i {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    /* 메인 배너 모바일 최적화 */
+    .main-banner {
+        height: auto; 
+        max-height: none;
+        width: 100%;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        border-radius: 0; 
+    }
+
+    .main-banner .slide-controls-container {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .main-banner .slide-controls {
+        padding: 6px 10px;
+    }
+    
+    .main-banner .slide-controls a {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* 탭 섹션 모바일 */
+    .tab-section .content-wrapper {
+        padding: 40px 15px;
+    }
+
+    .tab-nav {
+        border-radius: 12px;
+        width: 100%;
+        padding: 5px;
+        background-color: transparent; /* 모바일에서는 배경 제거 */
+        gap: 8px;
+    }
+
+    .tab-button {
+        flex: 1 1 45%; /* 2열 배치 */
+        justify-content: center;
+        background-color: #e9ecef; /* 버튼 자체에 배경 */
+        font-size: 14px;
+        padding: 10px;
+        letter-spacing: -0.5px;
+    }
+
+    .tab-button.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+    
+    #latest-news-list li,
+    #popular-news-list li,
+    #latest-post-list li,
+    #popular-post-list li {
+        padding: 15px;
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #latest-news-list a,
+    #popular-news-list a,
+    #latest-post-list a,
+    #popular-post-list a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .item-title {
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+    .item-meta {
+        font-size: 13px;
+        align-self: flex-start; /* 왼쪽 정렬 */
+        background: none;
+        padding: 0;
+        color: #888;
+    }
+
+    /* 통합 검색 반응형 */
+    .search-input-wrapper {
+        max-width: 92%;
+    }
+    #integrated-search-input {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+    .search-input-wrapper button {
+        padding: 0 25px;
+    }
+
+    /* 팝업 반응형 */
+    .popup-content {
+        padding: 20px;
+        width: 85%;
+    }
+
+    .popup-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .popup-buttons button {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+/* 탭 헤더(2단 탭) 정리 */
+.tab-header{
+    display:flex;
+    flex-direction: column;
+  }
+  
+  /* 2단 정렬 탭은 좀 작고 심플하게 */
+  .tab-nav--secondary{
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    gap: 8px;
+  }
+  
+  .tab-nav--secondary .tab-button{
+    background-color: #e9ecef;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .tab-nav--secondary .tab-button.active{
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: none;
+    transform: none;
+  }
+  
+  /* 더보기 링크 */
+/* 탭 섹션 더보기: 가운데 회색 글씨, 밑줄 없음 */
+.tab-more-link{
+    display: block;
+    width: fit-content;
+    margin: 14px auto 0;   /* 가운데 */
+    color: var(--text-color-light, #777);
+    text-decoration: none; /* 밑줄 제거 */
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  
+  .tab-more-link:hover{
+    color: var(--text-color, #222);
+    text-decoration: none; /* hover에서도 밑줄 없음 */
+    background: rgba(0,0,0,0.04); /* 아주 은은하게만 */
+  }
+  
+  
+  /* 새 탭 리스트에도 기존 카드 스타일 적용 */
+#service-list-news,
+#service-list-community,
+#service-list-ebooks,
+#service-list-stocks,
+#service-list-realty {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#service-list-news li,
+#service-list-community li,
+#service-list-ebooks li,
+#service-list-stocks li,
+#service-list-realty li {
+  background-color: #fff;
+  padding: 18px 25px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+#service-list-news li:hover,
+#service-list-community li:hover,
+#service-list-ebooks li:hover,
+#service-list-stocks li:hover,
+#service-list-realty li:hover {
+  border-color: var(--primary-color);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(26, 68, 122, 0.1);
+}
+
+#service-list-news a,
+#service-list-community a,
+#service-list-ebooks a,
+#service-list-stocks a,
+#service-list-realty a {
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--text-color);
+  text-decoration: none;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ===== Admin Add Stock Modal ===== */
+.ah-modal{
+    position: fixed;
+    inset: 0;
+    display: none;           /* 기본 숨김 */
+    z-index: 9999;
+  }
+  .ah-modal.is-open{ display:block; }
+  
+  .ah-modal__backdrop{
+    position:absolute;
+    inset:0;
+    background: rgba(0,0,0,0.45);
+  }
+  
+  .ah-modal__card{
+    position: relative;
+    width: min(760px, calc(100% - 24px));
+    margin: 10vh auto 0;
+    background:#fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    overflow:hidden;
+  }
+  
+  .ah-modal__header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .ah-modal__header h3{ margin:0; font-size: 16px; }
+  .ah-modal__close{
+    border:none;
+    background:transparent;
+    font-size: 18px;
+    cursor:pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+  }
+  .ah-modal__close:hover{ background: rgba(0,0,0,0.06); }
+  
+  .ah-modal__body{ padding: 14px 16px 0; }
+  
+  .ah-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+  }
+  
+  .ah-modal__footer{
+    display:flex;
+    justify-content:flex-end;
+    gap: 8px;
+    padding: 12px 16px 16px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    margin-top: 12px;
+  }
+  
+  /* 모바일은 1열 */
+  @media (max-width: 640px){
+    .ah-modal__card{ margin-top: 6vh; }
+    .ah-grid{ grid-template-columns: 1fr; }
+  }
+  

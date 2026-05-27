@@ -1,0 +1,219 @@
+/* [삭제] SUIT-Regular @font-face 제거 */
+
+
+/* =================================== */
+/* 글로벌 스타일 & 리디자인 제안         */
+/* =================================== */
+:root {
+    /* [리디자인] 로고 색상 기반의 새로운 색상 시스템 */
+    --primary-color: #1A447A; /* 로고의 메인 남색 */
+    --sub-color: #112E51;     /* Primary Color보다 약간 어두운 남색 */
+    --accent-color: #00A886;   /* 긍정적 느낌을 주는 녹색 계열 포인트 컬러 */
+    --danger-color: #e74c3c;
+    --bg-color: #F8F9FA;       /* 콘텐츠 영역을 돋보이게 하는 연한 회색 배경 */
+    --text-color: #333;
+    --text-color-light: #666;  /* 약간 연한 회색 텍스트 */
+    --border-color: #E0E0E0;   /* 더 부드러운 느낌의 경계선 색상 */
+    --content-width: 1200px;
+    --border-radius-base: 8px; /* 전역으로 사용할 부드러운 둥근 모서리 값 */
+}
+
+body {
+    /* [리디자인] 기본 서체 및 가독성 개선 */
+    /* [수정] Pretendard GOV를 최우선으로 하는 font-family 스택으로 변경 */
+    font-family: "Pretendard GOV Variable", "Pretendard GOV", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.7; /* 가독성을 위한 줄 간격 확보 */
+    font-size: 16px;  /* 기본 폰트 크기 상향 */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* --- 레이아웃 --- */
+.content-wrapper {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.empty-message {
+    text-align: center;
+    color: #888;
+    padding: 40px;
+    grid-column: 1 / -1;
+}
+
+/* --- 헤더 --- */
+header {
+    background-color: white;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: static;
+    top: 0;
+    z-index: 100;
+}
+
+header .content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.header-auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-auth a {
+    font-weight: 600;
+    margin-left: 15px;
+    font-size: 16px;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.header-auth a:hover {
+    color: var(--primary-color);
+}
+
+#mobile-notice {
+    display: none;
+}
+
+
+/* --- 푸터 --- */
+footer {
+    background-color: #343a40;
+    color: #ccc;
+    margin-top: 60px;
+}
+
+footer .content-wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+footer .foot-link {
+    font-size: 16px;
+    text-align: center;
+    align-items: center;
+}
+
+/* --- 사용자 환영 메시지 스타일 --- */
+#user-welcome-section {
+    padding-top: 0px;
+    padding-bottom: 0;
+}
+
+#user-welcome-section #welcome-message {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #333;
+    margin: 0;
+}
+
+#user-welcome-section #login-status-info {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #808080;
+}
+
+
+/* --- 기본 콘텐츠 섹션 --- */
+.content-section {
+    padding-top: 20px;
+}
+
+.content-section h2 {
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.sub-description {
+    color: var(--text-color-light);
+    font-size: 1.1rem;
+    margin-top: -10px;
+    margin-bottom: 1.5rem;
+}
+
+
+/* --- 반응형 공통 --- */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 0 15px;
+    }
+
+    header .content-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .header-auth a {
+        margin-left: 10px;
+    }
+
+    .content-section h2 {
+        font-size: 1.5em;
+    }
+    
+    #user-welcome-section {
+        margin-top: 10px;
+        padding-left: 6.5px;
+    }
+
+    #user-welcome-section #welcome-message {
+        font-size: 1.1em;
+    }
+    #mobile-notice {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "id": 1749567947713,
+    "realName": "관리자",
+    "dob": "1978-06-30",
+    "email": "njarekr1@naver.com",
+    "username": "admin",
+    "password": "$2b$10$TuWLEjfdwcFEb3n1US7W5.88cEdZ7ys7MMUGbIvHz7B7iLu9yZt36",
+    "role": "admin",
+    "balance": 0,
+    "portfolio": []
+  },
+  {
+    "id": 1749569955687,
+    "realName": "허민재",
+    "dob": "2011-11-12",
+    "email": "njarekr1@gmail.com",
+    "username": "mnza_eu",
+    "password": "$2b$10$36wgDYP78O9GP4RuADfMaOjrKGHOns.scwR.mus2mylhQHBQvMu/.",
+    "role": "user",
+    "balance": 0,
+    "portfolio": []
+  },
+  {
+    "id": 1751546291832,
+    "realName": "운동화책",
+    "dob": "2008-06-18",
+    "email": "drew1618@naver.com",
+    "username": "sneakers",
+    "password": "$2b$10$CB4s2IXdTBV3qk/zYdjmwetY2OwzidFKVFXqrIGbfQ5gKmZV0n.1S",
+    "role": "user",
+    "balance": 2190875,
+    "portfolio": [
+      {
+        "tickerCode": "DNH4",
+        "companyName": "동화일보",
+        "quantity": 1000,
+        "purchasePrice": 1379
+      },
+      {
+        "tickerCode": "LOT5",
+        "companyName": "시그니은",
+        "quantity": 5,
+        "purchasePrice": 68539
+      },
+      {
+        "tickerCode": "DNH1",
+        "companyName": "동화건설",
+        "quantity": 100,
+        "purchasePrice": 32947
+      },
+      {
+        "tickerCode": "DNH2",
+        "companyName": "동화시멘트",
+        "quantity": 50,
+        "purchasePrice": 2039
+      },
+      {
+        "tickerCode": "DNH3",
+        "companyName": "동화증권",
+        "quantity": 100,
+        "purchasePrice": 2568
+      },
+      {
+        "tickerCode": "AGR4",
+        "companyName": "에이바게트",
+        "quantity": 25,
+        "purchasePrice": 25716
+      },
+      {
+        "tickerCode": "LOT2",
+        "companyName": "로또시네마",
+        "quantity": 10,
+        "purchasePrice": 4892
+      },
+      {
+        "tickerCode": "NOC1",
+        "companyName": "NEBC엔터테인먼트",
+        "quantity": 20,
+        "purchasePrice": 39621
+      },
+      {
+        "tickerCode": "MAV1",
+        "companyName": "메이버",
+        "quantity": 5,
+        "purchasePrice": 153898
+      },
+      {
+        "tickerCode": "BCN1",
+        "companyName": "벱콘이앤씨",
+        "quantity": 10,
+        "purchasePrice": 18025
+      }
+    ]
+  },
+  {
+    "id": 1751546734701,
+    "realName": "신동화",
+    "dob": "2008-06-18",
+    "email": "fairytalebook1618@gmail.com",
+    "username": "fairytale",
+    "password": "$2b$10$Z6eoUXPXRay7UovUhBY7r.5ZEmRDIgvnvNRi62/IJ0wW6sPDxDmqy",
+    "role": "user",
+    "balance": 1000000,
+    "portfolio": []
+  },
+  {
+    "id": 1751547164518,
+    "realName": "지식볶음밥",
+    "dob": "2008-06-18",
+    "email": "rocca7276@gmail.com",
+    "username": "book",
+    "password": "$2b$10$9ERsydz6Vd1YnbRNw/UaWuUJbmaLMW5cjtlmICRubj3Aydjx2TBbO",
+    "role": "user",
+    "balance": 1000000,
+    "portfolio": []
+  },
+  {
+    "id": 1751612271395,
+    "realName": "이의민",
+    "dob": "2011-10-18",
+    "email": "euimin0987@gmail.com",
+    "username": "lem",
+    "password": "$2b$10$F9gm1TJAC.01fxKKnmjwpuxWbLVBPUxzY2G1VO6Pquckv3GIK1MqS",
+    "role": "user",
+    "balance": 1000000,
+    "portfolio": []
+  },
+  {
+    "id": 1752893356895,
+    "realName": "벱콘",
+    "dob": "2025-06-30",
+    "email": "hebebcon@naver.com",
+    "username": "bebcon",
+    "password": "$2b$10$E/N3OVt79DLIFmBc4udPNeMH7LVsYhnds2BHy0DR75x.4hoMJ4WUK",
+    "role": "user",
+    "balance": 1000207229,
+    "portfolio": []
+  },
+  {
+    "id": 1760172138663,
+    "realName": "김잡다",
+    "dob": "2011-11-12",
+    "email": "hmj3465@daum.net",
+    "username": "hmjssyo",
+    "password": "$2b$10$AWCuKytUoYxXVLRpP46zPuf5qCqt8ViwIHFgBrN70inmdxpeHS51a",
+    "role": "user",
+    "balance": 10000000,
+    "portfolio": []
+  },
+  {
+    "id": 1764248416875,
+    "realName": "공인중개사",
+    "dob": "0000-00-00",
+    "email": "rea1ty@bebcon.kr",
+    "username": "rea1ty",
+    "password": "$2b$10$TtD.Sp8mrE/zmAkBK0/xueXG.VzZMZEd8SxvTG/Mp3dI1akdCTVn6",
+    "role": "realtor",
+    "balance": 0,
+    "portfolio": []
+  },
+  {
+    "id": 1764248418077,
+    "realName": "기자",
+    "dob": "0000-00-00",
+    "email": "r2port2r@bebcon.kr",
+    "username": "r2port2r",
+    "password": "$2b$10$oAa2kjXYAVZCErYCp9EzrunZ/a3u8VhwBwHYGZaMBlZgNRirrme2a",
+    "role": "reporter",
+    "balance": 0,
+    "portfolio": []
+  }
+]

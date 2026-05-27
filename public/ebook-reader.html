@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안현민국 │ 전자책 리더</title>
+
+    <link rel="icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/header-footer.css">
+
+    <!-- ✅ 버튼 공통 -->
+    <link rel="stylesheet" href="/css/components/buttons.css">
+
+    <!-- ✅ ebooks.css 안에 (PC 오른쪽 툴바 / 모바일 하단툴바 + 접기/펼치기) 스타일이 있어야 함 -->
+    <link rel="stylesheet" href="/css/pages/ebooks.css">
+            <meta property="og:title" content="안현민국">
+    <meta property="og:description" content="안현민국 국가전자도서관에서 마음의 양식을 편리하게 쌓아보세요.">
+    <meta property="og:image" content="https://bebcon.kr/images/og-image.png">
+    <meta property="og:url" content="https://bebcon.kr">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="안현민국 │ 국가전자도서관">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="안현민국">
+    <meta name="twitter:description" content="안현민국 국가전자도서관에서 마음의 양식을 편리하게 쌓아보세요.">
+    <meta name="twitter:image" content="https://bebcon.kr/images/og-image.png">
+    <meta name="google-site-verification" content="ULv8I55tAAO8s30g3q1E5VhTZIMXad4TtE_r8QIq7I4" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3878025993006488"></script>
+</head>
+
+<body>
+    <!-- ✅ 뉴스 페이지 스타일의 헤더(직접 삽입) -->
+    <header>
+        <div class="content-wrapper">
+            <a href="/" class="logo-link">
+                <img src="/images/logo.png" alt="안현민국 로고">
+            </a>
+
+            <div id="user-welcome-section" style="display: none;">
+                <p id="welcome-message"></p>
+                <small id="login-status-info"></small>
+            </div>
+
+            <div class="header-right-container">
+                <div id="header-auth-status" class="header-auth"></div>
+
+                <div class="hamburger-menu">
+                    <i class="fa-solid fa-bars"></i>
+                    <div class="dropdown-menu">
+                        <a href="/"><i class="fas fa-home"></i>⠀메인</a>
+                        <a href="/news"><i class="fa-solid fa-newspaper"></i>⠀뉴스</a>
+                        <a href="/community"><i class="fa-solid fa-users"></i>⠀커뮤니티</a>
+                        <a href="/stock-main.html"><i class="fa-solid fa-arrow-trend-up"></i>⠀주식</a>
+                        <a href="/ebooks"><i class="fa-solid fa-book"></i>⠀전자책</a>
+                        <a href="/image-hosting"><i class="fa-solid fa-photo-film"></i>⠀호스팅</a>
+                        <a href="/realty"><i class="fa-solid fa-building"></i>⠀부동산</a>
+                        <a href="/complaints"><i class="fa-solid fa-comment"></i>⠀민원</a>
+                        <a href="/schedule"><i class="fa-solid fa-calendar-days"></i>⠀일정</a>
+                        <a href="http://bebcon.kr:8100/" target="_blank"><i class="fa-solid fa-map"></i>⠀지도</a>
+                        <a href="/president.html"><i class="fa-solid fa-user-tie"></i>⠀대통령실</a>
+                        <a href="/introduction.html"><i class="fa-solid fa-circle-info"></i>⠀소개</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="reader-wrapper">
+            <!-- ✅ 모바일: 하단 툴바 + 접기/펼치기 / PC: 오른쪽 툴바 (CSS에서 반응형 처리) -->
+            <!-- collapsed는 모바일에서 기본 접힘으로 시작(PC에서는 영향 거의 없음: CSS가 모바일에서만 collapsed 처리) -->
+            <div class="reader-controls collapsed" id="readerControls">
+                <!-- ✅ 모바일 전용 핸들(버튼): CSS에서 모바일에서만 보이게 처리 -->
+                <button class="toggle-btn" id="readerToggleBtn" type="button" aria-expanded="false">
+                    펼치기
+                </button>
+
+                <div class="font-controls">
+                    <button class="vote-button" type="button" onclick="changeFontSize(-1)" aria-label="글자 크기 줄이기">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <button class="vote-button" type="button" onclick="changeFontSize(1)" aria-label="글자 크기 키우기">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </div>
+
+                <div class="action-controls">
+                    <button class="vote-button" type="button" onclick="saveBookmark()">
+                        <i class="fa-solid fa-bookmark"></i>
+                    </button>
+                    <button class="vote-button" type="button" onclick="location.href='/ebooks'">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                </div>
+            </div>
+
+            <h1 id="viewer-title" class="book-title">...</h1>
+            <p id="viewer-author" class="book-author">...</p>
+
+            <div id="viewer" class="viewer-container size-3"></div>
+        </div>
+    </main>
+
+<footer>
+    <div class="content-wrapper">
+        <p><i class="fa-regular fa-copyright"></i>⠀Republic of Anhyeon. All Rights Reserved.</p>
+        <p><i class="fa-solid fa-location-dot"></i>⠀안현특별시 성초구 안현대로 1 (암동, 정부안현청사)⠀│⠀<a href="https://discord.gg/m879pfYX2M"><i class="fa-brands fa-discord"></i>⠀안현민국 디스코드</a></p>
+        <hr class="divider">
+        <p><a href="https://www.bebcon.kr/privacy.html"><strong>개인정보처리방침</strong></a> <a href="https://www.bebcon.kr/terms.html">이용약관</a></p>
+    </div>
+</footer>
+
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- ✅ 기존 사이트 공통 스크립트 -->
+    <script src="/js/script.js"></script>
+
+    <script>
+        let fontSizeLevel = 3;
+        const ebookId = window.location.pathname.split('/').pop();
+        const loggedInUser = localStorage.getItem('loggedInUser') || 'guest';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // ✅ 접기/펼치기 토글 세팅 (모바일 하단툴바)
+            setupReaderControlsToggle();
+
+            try {
+                const response = await fetch(`/api/ebooks/${ebookId}`);
+                if (!response.ok) throw new Error('데이터를 가져올 수 없습니다.');
+                const ebook = await response.json();
+
+                document.title = `안현민국 │ ${ebook.title}`;
+                document.getElementById('viewer-title').innerText = ebook.title;
+                document.getElementById('viewer-author').innerText = `${ebook.author} 지음 │ ${ebook.publisher}`;
+
+                const viewer = new toastui.Editor({
+                    el: document.querySelector('#viewer'),
+                    viewer: true,
+                    initialValue: ebook.content
+                });
+
+                loadReaderSettings();
+
+            } catch (error) {
+                console.error(error);
+                Toastify({
+                    text: "책을 불러오는 중 오류가 발생했습니다.",
+                    backgroundColor: "red"
+                }).showToast();
+            }
+        });
+
+        function setupReaderControlsToggle() {
+            const controls = document.getElementById('readerControls');
+            const toggleBtn = document.getElementById('readerToggleBtn');
+            if (!controls || !toggleBtn) return;
+
+            // 저장된 상태 복원 (모바일에서 의미 큼)
+            const saved = localStorage.getItem('readerControlsCollapsed');
+            if (saved === 'false') controls.classList.remove('collapsed');
+            if (saved === 'true') controls.classList.add('collapsed');
+
+            const syncLabel = () => {
+                const collapsed = controls.classList.contains('collapsed');
+                toggleBtn.textContent = collapsed ? '펼치기' : '숨기기';
+                toggleBtn.setAttribute('aria-expanded', String(!collapsed));
+            };
+            syncLabel();
+
+            toggleBtn.addEventListener('click', () => {
+                controls.classList.toggle('collapsed');
+                localStorage.setItem('readerControlsCollapsed', String(controls.classList.contains('collapsed')));
+                syncLabel();
+            });
+        }
+
+        window.changeFontSize = (delta) => {
+            fontSizeLevel = Math.max(1, Math.min(5, fontSizeLevel + delta));
+            const viewerEl = document.getElementById('viewer');
+
+            viewerEl.classList.remove('size-1','size-2','size-3','size-4','size-5');
+            viewerEl.classList.add(`size-${fontSizeLevel}`);
+
+            localStorage.setItem(`ebook_font_size`, String(fontSizeLevel));
+        };
+
+        window.saveBookmark = () => {
+            const scrollPos = window.scrollY;
+            localStorage.setItem(`bookmark_${ebookId}_${loggedInUser}`, String(scrollPos));
+            Toastify({
+                text: "현재 읽던 위치가 저장되었습니다.",
+                backgroundColor: "green"
+            }).showToast();
+        };
+
+        function loadReaderSettings() {
+            const savedSize = localStorage.getItem(`ebook_font_size`);
+            if (savedSize) {
+                fontSizeLevel = parseInt(savedSize, 10);
+                const viewerEl = document.getElementById('viewer');
+                viewerEl.classList.remove('size-1','size-2','size-3','size-4','size-5');
+                viewerEl.classList.add(`size-${fontSizeLevel}`);
+            }
+
+            const savedScroll = localStorage.getItem(`bookmark_${ebookId}_${loggedInUser}`);
+            if (savedScroll) {
+                if (confirm('이전에 읽던 지점이 있습니다. 이동하시겠습니까?')) {
+                    window.scrollTo({ top: parseInt(savedScroll, 10), behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

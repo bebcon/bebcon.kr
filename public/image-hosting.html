@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안현민국 │ 호스팅</title>
+    <meta name="description" content="다시 뛰는 공정 도시 안현특별시 누리집입니다.">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- [수정] CSS 파일 연결 변경 -->
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/components/header-footer.css">
+    <link rel="stylesheet" href="/css/components/buttons.css">
+    <link rel="stylesheet" href="/css/components/forms.css">
+    <link rel="stylesheet" href="/css/components/pagination.css">
+    <link rel="stylesheet" href="/css/pages/image-hosting.css">
+
+    <meta property="og:title" content="안현민국 │ 호스팅">
+    <meta property="og:description" content="안현민국의 안정적인 미디어 호스팅 서비스입니다.">
+    <meta property="og:image" content="https://bebcon.kr/images/og-image.png">
+    <meta property="og:url" content="https://bebcon.kr/image-hosting">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="안현민국">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3878025993006488"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="content-wrapper">
+            <a href="/" class="logo-link">
+                <img src="/images/logo.png" alt="안현민국 로고">
+            </a>
+            
+            <div id="user-welcome-section" style="display: none;">
+                <p id="welcome-message"></p>
+                <small id="login-status-info"></small>
+            </div>
+
+    
+            <div class="header-right-container">
+                <div id="header-auth-status" class="header-auth">
+                </div>
+    
+                <div class="hamburger-menu">
+                    <i class="fa-solid fa-bars"></i>
+                    <div class="dropdown-menu">
+                        <a href="/"><i class="fas fa-home"></i>⠀메인</a>
+                        <a href="/news"><i class="fa-solid fa-newspaper"></i>⠀뉴스</a>
+                        <a href="/community"><i class="fa-solid fa-users"></i>⠀커뮤니티</a>
+                        <a href="/stock-main.html"><i class="fa-solid fa-arrow-trend-up"></i>⠀주식</a>
+                        <a href="/ebooks"><i class="fa-solid fa-book"></i>⠀전자책</a>
+                        <a href="/image-hosting"><i class="fa-solid fa-photo-film"></i>⠀호스팅</a>
+                        <a href="/realty"><i class="fa-solid fa-building"></i>⠀부동산</a>
+                        <a href="/complaints"><i class="fa-solid fa-comment"></i>⠀민원</a>
+                        <a href="/schedule"><i class="fa-solid fa-calendar-days"></i>⠀일정</a>
+                        <a href="http://bebcon.kr:8100/" target="_blank"><i class="fa-solid fa-map"></i>⠀지도</a>
+                        <a href="/president.html"><i class="fa-solid fa-user-tie"></i>⠀대통령실</a>
+                        <a href="/introduction.html"><i class="fa-solid fa-circle-info"></i>⠀소개</a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </header>
+
+<main>
+    <div class="content-wrapper">
+        <section class="content-section" id="image-hosting-page">
+            <h2><i class="fa-solid fa-photo-film"></i>⠀호스팅</h2>
+            <p>서버에 이미지나 동영상을 업로드하고 링크로 활용하실 수 있습니다.</p>
+            <p>한 칸은 256x256 픽셀이며, 가로와 세로 칸 수를 입력하면 자동으로 크기가 변환되어 저장됩니다.</p>
+            
+            <hr class="divider">
+        
+            <h3>새 미디어 업로드</h3>
+            
+            <form id="upload-form" class="upload-container">
+                <div id="upload-area" class="upload-area">
+                    <input type="file" id="media-file-input" accept="image/*, video/*" class="visually-hidden">
+                    <label for="media-file-input" class="upload-label">
+                        <div class="upload-instructions">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <strong>클릭 또는 파일을 드래그하여 업로드</strong>
+                            <span>이미지와 동영상 모두 지원합니다. (최대 3GB)</span>
+                        </div>
+                    </label>
+                </div>
+                <div id="preview-area" class="preview-area hidden">
+                    <img id="image-preview" src="#" alt="이미지 미리보기">
+                    <video id="video-preview" src="#" controls alt="동영상 미리보기"></video>
+                    <button type="button" id="cancel-preview-btn" class="cancel-preview-btn" title="파일 선택 취소">&times;</button>
+                </div>
+                <div id="upload-controls" class="upload-controls hidden">
+                    <div class="form-group">
+                        <label for="media-title-input">미디어 제목</label>
+                        <input type="text" id="media-title-input" class="form-input" placeholder="미디어 제목을 입력하세요.">
+                    </div>
+                    <div class="form-group">
+                        <label for="media-category-input">카테고리</label>
+                        <input type="text" id="media-category-input" class="form-input" list="category-list" placeholder="카테고리를 선택하거나 새로 입력하세요.">
+                        <datalist id="category-list"></datalist>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="media-width-input">가로 칸 수</label>
+                            <input type="number" id="media-width-input" class="form-input" placeholder="예: 2">
+                        </div>
+                        <div class="form-group">
+                            <label for="media-height-input">세로 칸 수</label>
+                            <input type="number" id="media-height-input" class="form-input" placeholder="예: 1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button id="upload-button" type="submit" class="button-primary"><i class="fa-solid fa-upload"></i>⠀업로드</button>
+                    </div>
+                </div>
+            </form>
+            
+            <div id="login-prompt" class="login-prompt hidden">
+                <p><i class="fa-solid fa-circle-info"></i>⠀미디어를 업로드하려면 로그인이 필요합니다.</p>
+                <a href="/login" class="button-secondary">로그인 페이지로</a>
+            </div>
+        
+            <hr class="divider">
+        
+            <h3>업로드된 미디어 목록</h3>
+            <p class="sub-description">이미지나 동영상을 클릭하면 보기 모드로 진입할 수 있습니다.</p>
+
+            <div id="media-filter-bar">
+                <form id="media-search-form" class="media-search-form">
+                    <select id="media-category-filter" class="filter-select">
+                        <option value="전체">전체</option>
+                    </select>
+                    <input type="number" id="media-width-filter" class="filter-input" placeholder="가로 칸 수">
+                    <input type="number" id="media-height-filter" class="filter-input" placeholder="세로 칸 수">
+                    <div class="autocomplete-container">
+                        <input type="text" id="media-search-input" class="filter-input search-main" placeholder="미디어 제목으로 검색">
+                    </div>
+                    <button type="submit" class="button-primary button-small"><i class="fa-solid fa-magnifying-glass"></i>⠀검색</button>
+                </form>
+            </div>
+            
+            <div id="media-list-gallery" class="image-gallery">
+                <!-- script.js에 의해 동적으로 채워집니다. -->
+            </div>
+            <div class="pagination" id="media-pagination"></div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="content-wrapper">
+        <p><i class="fa-regular fa-copyright"></i>⠀Republic of Anhyeon. All Rights Reserved.</p>
+        <p><i class="fa-solid fa-location-dot"></i>⠀안현특별시 성초구 안현대로 1 (암동, 정부안현청사)⠀│⠀<a href="https://discord.gg/m879pfYX2M"><i class="fa-brands fa-discord"></i>⠀안현민국 디스코드</a></p>
+        <hr class="divider">
+        <p><a href="https://www.bebcon.kr/privacy.html"><strong>개인정보처리방침</strong></a> <a href="https://www.bebcon.kr/terms.html">이용약관</a></p>
+    </div>
+</footer>
+
+<!-- 미리보기용 모달 -->
+<div id="media-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <img src="" alt="이미지 미리보기" id="modal-image" class="hidden">
+        <video src="" controls id="modal-video" class="hidden"></video>
+        <div id="modal-caption"></div>
+        <p class="modal-esc-hint">보기 모드를 종료하려면 ESC 또는 검은 영역을 클릭하세요.</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/js/script.js"></script>
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "14794c10a277160";
+if(window.wcs) {
+  wcs_do();
+}
+</script>
+</body>
+</html>

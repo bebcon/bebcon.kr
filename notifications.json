@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1763997618232,
+    "targetUser": "mnza_eu",
+    "message": "bebcon님이 회원님의 게시물 \"이게 예지력인가?\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1761759763911",
+    "createdAt": 1763997618232,
+    "type": "like",
+    "sourceId": 1761759763911
+  },
+  {
+    "id": 1764602935114,
+    "targetUser": "fairytale",
+    "message": "bebcon님이 회원님의 게시물 \"피크파크 정상 갔다\"을(를) 좋아합니다.",
+    "isRead": false,
+    "link": "/post/1763617948019",
+    "createdAt": 1764602935114,
+    "type": "like",
+    "sourceId": 1763617948019
+  },
+  {
+    "id": 1765347725961,
+    "targetUser": "fairytale",
+    "message": "bebcon님이 회원님의 게시물 \"날아서 세계속으로 봤음?\"을(를) 좋아합니다.",
+    "isRead": false,
+    "link": "/post/1765346116805",
+    "createdAt": 1765347725961,
+    "type": "like",
+    "sourceId": 1765346116805
+  },
+  {
+    "id": 1765347739161,
+    "targetUser": "fairytale",
+    "message": "벱콘님이 게시물 \"날아서 세계속으로 봤음?\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1765346116805",
+    "createdAt": 1765347739161,
+    "type": "comment",
+    "sourceId": 1765347739158
+  },
+  {
+    "id": 1765444482538,
+    "targetUser": "bebcon",
+    "message": "mnza_eu님이 회원님의 게시물 \"S46 리뷰 내가 최초인가ㅋㅋㅋ\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1765444437403",
+    "createdAt": 1765444482538,
+    "type": "like",
+    "sourceId": 1765444437403
+  },
+  {
+    "id": 1765444497435,
+    "targetUser": "bebcon",
+    "message": "허민재님이 게시물 \"S46 리뷰 내가 최초인가ㅋㅋㅋ\"에 댓글을 남겼습니다.",
+    "isRead": true,
+    "link": "/post/1765444437403",
+    "createdAt": 1765444497435,
+    "type": "comment",
+    "sourceId": 1765444497433
+  },
+  {
+    "id": 1765445065970,
+    "targetUser": "mnza_eu",
+    "message": "bebcon님이 회원님의 게시물 \"S46 두번째 등록합니더~\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1765445033807",
+    "createdAt": 1765445065970,
+    "type": "like",
+    "sourceId": 1765445033807
+  },
+  {
+    "id": 1765615812958,
+    "targetUser": "mnza_eu",
+    "message": "신동화님이 게시물 \"S46 두번째 등록합니더~\"에 댓글을 남겼습니다.",
+    "isRead": true,
+    "link": "/post/1765445033807",
+    "createdAt": 1765615812958,
+    "type": "comment",
+    "sourceId": 1765615812879
+  },
+  {
+    "id": 1765615821698,
+    "targetUser": "mnza_eu",
+    "message": "fairytale님이 회원님의 게시물 \"S46 두번째 등록합니더~\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1765445033807",
+    "createdAt": 1765615821698,
+    "type": "like",
+    "sourceId": 1765445033807
+  },
+  {
+    "id": 1765636123601,
+    "targetUser": "fairytale",
+    "message": "admin님이 회원님의 게시물 \"나일론 안현 온거 실화냐\"을(를) 좋아합니다.",
+    "isRead": false,
+    "link": "/post/1762148957155",
+    "createdAt": 1765636123601,
+    "type": "like",
+    "sourceId": 1762148957155
+  },
+  {
+    "id": 1767267161764,
+    "targetUser": "fairytale",
+    "message": "지식볶음밥님이 게시물 \"해피뉴이어\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1767267130768",
+    "createdAt": 1767267161764,
+    "type": "comment",
+    "sourceId": 1767267161762
+  },
+  {
+    "id": 1767289639196,
+    "targetUser": "fairytale",
+    "message": "벱콘님이 게시물 \"해피뉴이어\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1767267130768",
+    "createdAt": 1767289639196,
+    "type": "comment",
+    "sourceId": 1767289639194
+  },
+  {
+    "id": 1767289727145,
+    "targetUser": "fairytale",
+    "message": "bebcon님이 회원님의 게시물 \"해피뉴이어\"을(를) 좋아합니다.",
+    "isRead": false,
+    "link": "/post/1767267130768",
+    "createdAt": 1767289727145,
+    "type": "like",
+    "sourceId": 1767267130768
+  },
+  {
+    "id": 1769319245723,
+    "targetUser": "bebcon",
+    "message": "admin님이 회원님의 게시물 \"요즘 시청 내부에서 돌아다닌다는 이야기.txt\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1768854488475",
+    "createdAt": 1769319245723,
+    "type": "like",
+    "sourceId": 1768854488475
+  },
+  {
+    "id": 1769846042412,
+    "targetUser": "mnza_eu",
+    "message": "admin님이 회원님의 게시물 \"에덴카페 와봤는데 왜 이렇게 수상하냐?;;\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1769843863588",
+    "createdAt": 1769846042412,
+    "type": "like",
+    "sourceId": 1769843863588
+  },
+  {
+    "id": 1769846048176,
+    "targetUser": "bebcon",
+    "message": "admin님이 회원님의 게시물 \"에덴카페 끝까지 가본 후기..ㄷㄷ\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1769844521448",
+    "createdAt": 1769846048176,
+    "type": "like",
+    "sourceId": 1769844521448
+  },
+  {
+    "id": 1769855978603,
+    "targetUser": "bebcon",
+    "message": "신동화님이 게시물 \"에덴카페 끝까지 가본 후기..ㄷㄷ\"에 댓글을 남겼습니다.",
+    "isRead": true,
+    "link": "/post/1769844521448",
+    "createdAt": 1769855978603,
+    "type": "comment",
+    "sourceId": 1769855978600
+  },
+  {
+    "id": 1769867157312,
+    "targetUser": "bebcon",
+    "message": "mnza_eu님이 회원님의 게시물 \"에덴카페 끝까지 가본 후기..ㄷㄷ\"을(를) 좋아합니다.",
+    "isRead": true,
+    "link": "/post/1769844521448",
+    "createdAt": 1769867157312,
+    "type": "like",
+    "sourceId": 1769844521448
+  },
+  {
+    "id": 1769867164217,
+    "targetUser": "bebcon",
+    "message": "허민재님이 게시물 \"에덴카페 끝까지 가본 후기..ㄷㄷ\"에 댓글을 남겼습니다.",
+    "isRead": true,
+    "link": "/post/1769844521448",
+    "createdAt": 1769867164217,
+    "type": "comment",
+    "sourceId": 1769867164214
+  },
+  {
+    "id": 1778205355309,
+    "targetUser": "null",
+    "message": "운동화책님이 게시물 \"Mr.\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1778201745043",
+    "createdAt": 1778205355309,
+    "type": "comment",
+    "sourceId": 1778205355306
+  },
+  {
+    "id": 1778205441935,
+    "targetUser": "null",
+    "message": "운동화책님이 게시물 \"if(now()=sysdate(),sleep(15),0)\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1778201724990",
+    "createdAt": 1778205441935,
+    "type": "comment",
+    "sourceId": 1778205441931
+  },
+  {
+    "id": 1778205487052,
+    "targetUser": "null",
+    "message": "운동화책님이 게시물 \"Mr.\"에 댓글을 남겼습니다.",
+    "isRead": false,
+    "link": "/post/1778201722985",
+    "createdAt": 1778205487052,
+    "type": "comment",
+    "sourceId": 1778205487049
+  }
+]
